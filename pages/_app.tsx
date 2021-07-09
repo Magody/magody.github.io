@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Fragment } from 'react'
 
-const prefix = "/Portfolio"
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

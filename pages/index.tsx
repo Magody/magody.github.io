@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-const prefix = '/Portfolio'
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 export default function Home() {
   return (
