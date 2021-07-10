@@ -7,16 +7,17 @@ import {
   Image,
   Stack,
   Text,
-  useColorMode,
-  useMediaQuery,
+  useColorMode
 } from "@chakra-ui/react";
+import useMediaQueryFixed from "../../hooks/use-media-query";
 
 const Presentation = () => {
   const { colorMode } = useColorMode();
 
   const isDark = colorMode == "dark";
+  // console.log("presentation")
 
-  const [isSmallerScreen] = useMediaQuery("(max-width: 600px)");
+  const isSmallerScreen = useMediaQueryFixed("(max-width:600px)");
 
   return (
     <Stack>
