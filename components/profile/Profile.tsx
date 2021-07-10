@@ -1,11 +1,13 @@
-import React from "react";
-import { useMediaQuery } from "@chakra-ui/media-query";
+import React, { useState, useEffect } from "react";
 import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
 import Icon from "@chakra-ui/icon";
 import { DiCodeigniter, DiAndroid, DiWebplatform } from "react-icons/di";
+import useMediaQueryFixed from "../../hooks/use-media-query";
 
 function Profile() {
-  const [isNotSmallerScreen] = useMediaQuery("(min-width:600px)");
+
+  const isNotSmallerScreen = useMediaQueryFixed("(min-width:600px)");
+  // console.log("isNotSmallerScreen", isNotSmallerScreen);
 
   return (
     <Flex

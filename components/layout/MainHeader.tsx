@@ -20,7 +20,7 @@ const MainHeader = () => {
   };
 
   return (
-    <Flex w="100%" bg="red">
+    <Flex w="100%">
       <Heading ml="8" size="md" fontWeight="semibold" color="cyan.400">
         Danny
       </Heading>
