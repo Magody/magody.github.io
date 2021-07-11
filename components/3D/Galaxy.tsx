@@ -1,8 +1,10 @@
-import { Box, position } from "@chakra-ui/react";
+import { Box, Flex, position } from "@chakra-ui/react";
 import React, { useState, useEffect, useRef } from "react";
-import styles from "../Galaxy.module.css";
+import styles from "./Galaxy.module.css";
 import * as THREE from "three";
 import { ThreeWorld } from "../../models/ThreeWorld";
+import useMediaQueryFixed from "../../hooks/use-media-query";
+import $ from "jquery";
 
 const prefix = (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/images";
 
@@ -11,6 +13,13 @@ const threeWorldGalaxy = new ThreeWorld();
 let INTERSECTED: any;
 
 const pointer = new THREE.Vector2();
+
+const messages = [
+  "Hey",
+  "Whats going on?",
+  "The space is enigmatic",
+  "Why"
+]
 
 const Galaxy = () => {
   console.log("Galaxy");
@@ -21,19 +30,33 @@ const Galaxy = () => {
     z: 10,
   });
 
+
+  const isSmallerScreen = useMediaQueryFixed("(max-width: 600px)");
+
   useEffect(() => {
-    setupGalaxy(window.innerWidth, window.innerHeight / 2); // window.innerHeight
-    threeWorldGalaxy.camera.position.setZ(30);
+    var viewportOffset = $("#box_galaxy")[0].getBoundingClientRect();
+    // these are relative to the viewport, i.e. the window
+    var top = viewportOffset.top;
+    var left = viewportOffset.left + 3;
+
+    const width = isSmallerScreen? window.innerWidth - left * 2 : window.innerWidth - left * 2;
+    const height = isSmallerScreen? window.innerHeight/ 1.5: window.innerHeight/ 2;
+    console.log("GALAXY", width, height, top, left)
+    
+    setupGalaxy(width, height, isSmallerScreen); // window.innerHeight
+    threeWorldGalaxy.camera.position.setZ(50);
+    threeWorldGalaxy.camera.position.setX(-20);
+   
   }, []);
 
   return (
-    <Box>
+    <Box id="box_galaxy" className={styles.galaxy}>
       <canvas id="bg"></canvas>
     </Box>
   );
 };
 
-const setupGalaxy = (width: number, height: number) => {
+const setupGalaxy = (width: number, height: number, isSmallerScreen: boolean) => {
   // setup
   let aspect_ratio = window.innerWidth / window.innerHeight;
   const htmlElementCanvas = document.querySelector("#bg");
@@ -57,6 +80,13 @@ const setupGalaxy = (width: number, height: number) => {
       y: 20,
       z: -30,
     });
+
+    const torus2 = threeWorldGalaxy.addTorus(20, 2, 5, 100, 0x52eb34, {
+      x: 0,
+      y: 20,
+      z: -30,
+    });
+
     const pointLight = new THREE.PointLight(0xffffff);
     pointLight.position.set(5, 5, 5);
 
@@ -76,14 +106,14 @@ const setupGalaxy = (width: number, height: number) => {
 
     // Avatar
 
-    const texture = new THREE.TextureLoader().load(prefix + "/photo.jpg");
+    const texture = new THREE.TextureLoader().load(prefix + "/ia.jpg");
 
     const photo = new THREE.Mesh(
-      new THREE.BoxGeometry(3, 3, 3),
+      new THREE.BoxGeometry(15, 15, 15),
       new THREE.MeshBasicMaterial({ map: texture })
     );
-    photo.position.x = 10;
-    photo.position.y = 10;
+    photo.position.x = 0;
+    photo.position.y = 0;
     threeWorldGalaxy.scene.add(photo);
 
     // Moon
@@ -95,6 +125,18 @@ const setupGalaxy = (width: number, height: number) => {
       x: -10,
       y: 10,
       z: 20,
+    });
+
+    const moon2 = threeWorldGalaxy.addMoon(moonTexture, normalTexture, {
+      x: -30,
+      y: 10,
+      z: -30,
+    });
+
+    const moon3 = threeWorldGalaxy.addMoon(moonTexture, normalTexture, {
+      x: 30,
+      y: 10,
+      z: -30,
     });
 
     const onPointerMove = ( event: { clientX: number; clientY: number; } ) => {
@@ -111,12 +153,30 @@ const setupGalaxy = (width: number, height: number) => {
       if (INTERSECTED && INTERSECTED.material.emissive !== undefined && INTERSECTED.type === "Mesh"){
 
         console.log("MOUSE DOWN", INTERSECTED)
-        alert("UUID: " + INTERSECTED.uuid)
+        const random_index = Math.floor(Math.random() * (messages.length-0.5));
+        alert(messages[random_index]) // INTERSECTED.uuid
       }
 
       
     }
 
+    const onWindowResize = ()=>{
+
+      threeWorldGalaxy.camera.aspect = window.innerWidth / window.innerHeight;
+      threeWorldGalaxy.camera.updateProjectionMatrix();
+
+      var viewportOffset = $("#box_galaxy")[0].getBoundingClientRect();
+      // these are relative to the viewport, i.e. the window
+      var top = viewportOffset.top;
+      var left = viewportOffset.left + 3;
+      const width = isSmallerScreen? window.innerWidth - left * 2 : window.innerWidth - left * 2;
+     const height = isSmallerScreen? window.innerHeight/ 1.5: window.innerHeight/ 2;
+
+  
+      threeWorldGalaxy.renderer.setSize( width, height );
+  
+    }
+    window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousemove', onPointerMove );
     document.addEventListener( 'mousedown', onPointerDown );
 

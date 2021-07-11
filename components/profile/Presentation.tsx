@@ -97,8 +97,7 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
           <Image
             className="over_particles"
             alt="My photo"
-            mt={isSmallerScreen ? "12" : "0"}
-            mb={isSmallerScreen ? "12" : "0"}
+            m={isSmallerScreen ? "0.5rem" : "0"}
             w={boxSize}
             h={boxSize}
             borderRadius="full"

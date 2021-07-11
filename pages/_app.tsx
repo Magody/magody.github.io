@@ -8,6 +8,9 @@ import { extendTheme } from "@chakra-ui/react"
 
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
+
+
+
 const colors = {
   brand: {
     900: "#1a365d",
@@ -19,6 +22,10 @@ const colors = {
 const theme = extendTheme({ colors })
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+
+
+
   return (
     <ChakraProvider theme={theme}>
 

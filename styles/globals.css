@@ -37,3 +37,16 @@ a {
 .responsive_text {
   word-break: break-word;
 }
+
+.nav_button{
+  background: rgb(53, 194, 194);
+}
+
+.nav_button:hover{
+  background: cyan;
+  cursor: pointer;
+}
+
+.nav_button_active{
+  background: cyan;
+}
