@@ -113,8 +113,11 @@ function Profile() {
       </Box>
 
       <Box m="1rem">
-        <Text fontWeight="bold" fontSize="2xl" textAlign="center">
+        <Text fontWeight="bold" fontSize={isSmallerScreen? "xl":"3xl"} textAlign="center">
         Developer and data scientist focused on machine learning
+        </Text>
+        <Text fontWeight="normal" fontSize={isSmallerScreen? "xl":"2xl"} textAlign="center">
+        I know the following technologies:
         </Text>
         <Flex alignSelf="center" direction="row" justifyContent="center" alignItems="center"
       flexWrap="wrap">
