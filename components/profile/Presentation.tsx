@@ -15,13 +15,11 @@ import useMediaQueryFixed from "../../hooks/use-media-query";
 import ButtonWhatsapp from "../ui/ButtonWhatsapp";
 import ButtonTelegram from "../ui/ButtonTelegram";
 
-import useTranslation from "next-translate/useTranslation";
 const boxSize = "10rem";
 
 const Presentation: React.FC<{ greeting: string }> = (props) => {
   const { colorMode } = useColorMode();
 
-  let { t } = useTranslation("home");
   const isDark = colorMode == "dark";
   // console.log("presentation")
 
@@ -55,7 +53,7 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
             fontWeight="semibold"
             className="over_particles responsive_text"
           >
-            {t("slogan_part_1")}
+            If you can imagine it,
           </Text>
           <Text
             textAlign="center"
@@ -65,7 +63,7 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
             bgClip="text"
             bgGradient="linear(to-r, cyan.400, blue.500, purple.600)"
           >
-            {t("slogan_part_2")}
+            You can program it
           </Text>
           <Text textAlign="center" color={isDark ? "gray.200" : "gray.500"}>
             {props.greeting}

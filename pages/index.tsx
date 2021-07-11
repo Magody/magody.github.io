@@ -4,7 +4,6 @@ import Presentation from "../components/profile/Presentation";
 import Profile from "../components/profile/Profile";
 import Social from "../components/profile/Social";
 import { Locale } from "../models/CustomTypes";
-import useTranslation from "next-translate/useTranslation";
 import Particles from 'react-particles-js';
 
 /*
@@ -21,7 +20,6 @@ export async function getStaticProps({ locale }: Locale){
 
 const Index: React.FC<{}> = (props) => {
   // <Galaxy />
-  let { t } = useTranslation("home");
 
   useEffect(()=>{
     
@@ -145,7 +143,7 @@ const Index: React.FC<{}> = (props) => {
               "retina_detect": true
             }}    
         />
-      <Presentation greeting={t("greeting")} />
+      <Presentation greeting="Hi, i am Danny 🙋‍♂️" />
 
       <Profile />
     </React.Fragment>

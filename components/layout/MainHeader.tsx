@@ -46,13 +46,13 @@ const MainHeader = () => {
   <Heading ml="8" size="md" fontWeight="semibold" color="cyan.400">
         Danny
       </Heading>
+      <MenuLanguages />
   */
 
   return (
     <Flex w="100%" direction="row" alignItems="center" className="over_particles">
       
       <Box ml="2rem"></Box>
-      <MenuLanguages />
 
       <Spacer></Spacer>
       <IconButton

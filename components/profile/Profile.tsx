@@ -11,7 +11,6 @@ import { FcLinux } from "react-icons/fc";
 
 import useMediaQueryFixed from "../../hooks/use-media-query";
 
-import useTranslation from 'next-translate/useTranslation';
 import { SimpleCard } from "../ui/cards/SimpleCard";
 
 function Profile() {
@@ -19,7 +18,6 @@ function Profile() {
   // console.log("isNotSmallerScreen", isNotSmallerScreen);
 
 
-  let { t } = useTranslation("home");
 
   const technologies = [
     {
@@ -110,13 +108,13 @@ function Profile() {
           2+
         </Heading>
         <Text fontSize="2xl" color="gray.400">
-          {t("years_of_experience")}
+        Years of experience
         </Text>
       </Box>
 
       <Box m="1rem">
         <Text fontWeight="bold" fontSize="2xl" textAlign="center">
-          {t("ocupation")}
+        Developer and data scientist focused on machine learning
         </Text>
         <Flex alignSelf="center" direction="row" justifyContent="center" alignItems="center"
       flexWrap="wrap">
