@@ -11,10 +11,15 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
-import CardProject from "../../components/ui/cards/CardProject";
 import useMediaQueryFixed from "../../hooks/use-media-query";
 import { IoMdConstruct } from "react-icons/io";
 import { FaProjectDiagram } from "react-icons/fa";
+import dynamic from "next/dynamic";
+
+
+const CardProject = dynamic(
+    () => import("../../components/ui/cards/CardProject")
+  );
 
 const prefix = (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/images/projects";
 

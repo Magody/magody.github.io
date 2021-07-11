@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-import Galaxy from "../components/3D/Galaxy";
+import { useColorMode } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 import Presentation from "../components/profile/Presentation";
 import Profile from "../components/profile/Profile";
-import Social from "../components/profile/Social";
-import { Locale } from "../models/CustomTypes";
-import Particles from "react-particles-js";
-import { useColorMode } from "@chakra-ui/react";
 
 /*
 export async function getStaticProps({ locale }: Locale){
@@ -19,8 +16,10 @@ export async function getStaticProps({ locale }: Locale){
 }
 */
 
+
+const Particles = dynamic(() => import("react-particles-js"));
+
 const Index: React.FC<{}> = (props) => {
-  
   const { colorMode } = useColorMode();
 
   const isDark = colorMode === "dark";
@@ -84,7 +83,7 @@ const Index: React.FC<{}> = (props) => {
             line_linked: {
               enable: true,
               distance: 150,
-              color: isDark? "#ffffff": "#4aa89f",
+              color: isDark ? "#ffffff" : "#4aa89f",
               opacity: 0.4,
               width: 1,
             },
