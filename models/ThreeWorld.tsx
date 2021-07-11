@@ -40,7 +40,7 @@ export class ThreeWorld {
       radialSegments,
       tubularSegments
     );
-    const material = new THREE.MeshStandardMaterial({
+    const material = new THREE.MeshLambertMaterial({
       color: color,
     });
     const torus = new THREE.Mesh(geometry, material);
@@ -53,7 +53,7 @@ export class ThreeWorld {
 
   addStar(): THREE.Mesh {
     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
     const star = new THREE.Mesh(geometry, material);
 
     const x = THREE.MathUtils.randFloatSpread(100);
@@ -71,11 +71,14 @@ export class ThreeWorld {
     position: Position
   ): THREE.Mesh {
     const moon = new THREE.Mesh(
-      new THREE.SphereGeometry(3, 32, 32),
-      new THREE.MeshStandardMaterial({
-        map: moonTexture,
-        normalMap: normalTexture,
-      })
+      new THREE.SphereGeometry(2, 60, 60),
+      new THREE.MeshLambertMaterial ( 
+        { color: 0xffffff ,
+        map: moonTexture ,
+         reflectivity:0
+        } 
+      
+      )
     );
 
     moon.position.set(position.x, position.y, position.z);

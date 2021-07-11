@@ -34,6 +34,14 @@ const MainHeader = () => {
   const isSmallerScreen = useMediaQueryFixed("(max-width:600px)");
   const router = useRouter();
 
+  useEffect(() => {
+    // ensure always start with dark
+    if (colorMode == "light") {
+      setColorMode("dark");
+    }
+    
+  }, []);
+
   const handleToggleColorMode = () => {
     if (colorMode == "light") {
       setColorMode("dark");
@@ -43,11 +51,11 @@ const MainHeader = () => {
   };
 
   const redirectToGithub = () => {
-    window.open("www.github.com/Magody");
+    window.open("https://www.github.com/Magody");
   };
 
   const redirectToLinkedin = () => {
-    window.open("www.linkedin.com/in/magody-pendragon");
+    window.open("https://www.linkedin.com/in/magody-pendragon");
   };
   const redirectToOldPortfolio = () => {
     window.open("https://magody.github.io/OldPortfolio/");

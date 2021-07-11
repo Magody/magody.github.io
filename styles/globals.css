@@ -39,14 +39,14 @@ a {
 }
 
 .nav_button{
-  background: rgb(53, 194, 194);
+  background: rgb(80, 189, 174);
 }
 
 .nav_button:hover{
-  background: cyan;
+  background: rgb(28, 211, 132);
   cursor: pointer;
 }
 
 .nav_button_active{
-  background: cyan;
+  background: rgb(28, 211, 132);
 }

@@ -1,9 +1,15 @@
 import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
 import { timers } from "jquery";
 import React, { useState, useEffect, useRef } from "react";
-import Galaxy from "../components/3D/Galaxy";
+
 import useMediaQueryFixed from "../hooks/use-media-query";
 import $ from "jquery";
+
+import dynamic from 'next/dynamic';
+
+const Galaxy = dynamic(
+  () => import("../components/3D/Galaxy")
+)
 
 const phrases = [
   {
@@ -56,7 +62,11 @@ const About: React.FC<{ audio: any }> = (props) => {
   useEffect(() => {
     $("#box").show();
     $("#final_texts").hide();
-      $("#flex_vh").css("height", "80vh");
+    var viewportOffset = $("#flex_vh")[0].getBoundingClientRect();
+    // these are relative to the viewport, i.e. the window
+    var top = viewportOffset.top;
+
+      $("#flex_vh").css("height", window.innerHeight-top-5);
     const showMessage = async () => {
       for (let index = 0; index < phrases.length; index++) {
         const element = phrases[index];
@@ -68,7 +78,7 @@ const About: React.FC<{ audio: any }> = (props) => {
       }
       $("#box").hide();
       $("#final_texts").show();
-      const height = isSmallerScreen? window.innerHeight/ 1.5: window.innerHeight/ 2;
+      const height = window.innerHeight/ 2;
 
       $("#flex_vh").css("height", height);
       
