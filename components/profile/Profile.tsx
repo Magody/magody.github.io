@@ -1,79 +1,131 @@
 import React, { useState, useEffect } from "react";
 import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
 import Icon from "@chakra-ui/icon";
-import { DiCodeigniter, DiAndroid, DiWebplatform } from "react-icons/di";
+import { DiCodeigniter, DiAndroid, DiWebplatform, DiMongodb } from "react-icons/di";
+import { FaReact, FaUnity, FaLaravel, FaAngular } from "react-icons/fa";
+import { GiWolfHead } from "react-icons/gi";
+import { SiPostgresql, SiSpring, SiTensorflow } from "react-icons/si";
+import { FcLinux } from "react-icons/fc";
+
+
+
 import useMediaQueryFixed from "../../hooks/use-media-query";
 
-function Profile() {
+import useTranslation from 'next-translate/useTranslation';
+import { SimpleCard } from "../ui/cards/SimpleCard";
 
-  const isNotSmallerScreen = useMediaQueryFixed("(min-width:600px)");
+function Profile() {
+  const isSmallerScreen = useMediaQueryFixed("(max-width:600px)");
   // console.log("isNotSmallerScreen", isNotSmallerScreen);
 
+
+  let { t } = useTranslation("home");
+
+  const technologies = [
+    {
+      id: 1,
+      bg: "green.400",
+      bg_secundary: "#70f06e",
+      icon: DiAndroid,
+      text: "Android apps"
+    },
+    {
+      id: 2,
+      bg: "blue.200",
+      bg_secundary: "cyan.300",
+      icon: FaReact,
+      text: "React/NextJS"
+    },
+    {
+      id: 3,
+      bg: "salmon",
+      bg_secundary: "red.200",
+      icon: GiWolfHead,
+      text: "NestJs"
+    },
+    {
+      id: 4,
+      bg: "#a4a6a4",
+      bg_secundary: "#b6d9d5",
+      icon: FaUnity,
+      text: "Videogames"
+    },
+    {
+      id: 5,
+      bg: "#de9c18",
+      bg_secundary: "#f0ddb9",
+      icon: FaLaravel,
+      text: "Laravel"
+    },
+    {
+      id: 6,
+      bg: "#00c77e",
+      bg_secundary: "#82edc6",
+      icon: SiSpring,
+      text: "Spring Boot"
+    },
+    {
+      id: 7,
+      bg: "#a1b8ed",
+      bg_secundary: "#bac7e6",
+      icon: SiPostgresql,
+      text: "Databases SQL"
+    },
+    {
+      id: 8,
+      bg: "#77ed9c",
+      bg_secundary: "#a1edb9",
+      icon: DiMongodb,
+      text: "Databases NoSQL"
+    },
+    {
+      id: 9,
+      bg: "#a4a6a4",
+      bg_secundary: "#b6d9d5",
+      icon: FcLinux,
+      text: "Linux/Servers"
+    },
+    {
+      id: 10,
+      bg: "#ccdb48",
+      bg_secundary: "#e9f296",
+      icon: SiTensorflow,
+      text: "Machine Learning"
+    },
+    {
+      id: 11,
+      bg: "#ed864a",
+      bg_secundary: "#f56614",
+      icon: FaAngular,
+      text: "Angular"
+    }
+
+    
+  ]
+
   return (
-    <Flex
-      direction={isNotSmallerScreen ? "row" : "column"}
-      w="100%"
-      maxWidth={{ base: "100vh", md: "130vh", lg: "130vh", xl: "130vh" }}
-    >
-      <Box alignSelf="center" px="16" py="16" bg="blue">
+    <Flex direction={isSmallerScreen ? "column" : "row"} w="100%">
+      <Box alignSelf="center" px="8" py="8" borderColor="blue" border="1px">
         <Heading fontWeight="extrabold" color="cyan.500" size="4xl">
           2+
         </Heading>
         <Text fontSize="2xl" color="gray.400">
-          Years of Experience
+          {t("years_of_experience")}
         </Text>
       </Box>
-      <Box>
-        <Text fontWeight="bold" fontSize="2xl">
-          Product Designer and Developer sfdsfdsdfdsfs sdfsdfsdfdsfsfsdfsdf
+
+      <Box m="1rem">
+        <Text fontWeight="bold" fontSize="2xl" textAlign="center">
+          {t("ocupation")}
         </Text>
-        <Flex alignSelf="center" bg="green" direction="row">
-          <Flex
-            rounded="xl"
-            direction="column"
-            mt={4}
-            bg="blue.400"
-            h="30vh"
-            w="30vh"
-            justify="flex-end"
-          >
-            <Icon color="white" p="4" as={DiAndroid} w="24" h="24" />
-            <Text color="white" p="4" fontSize="xl" fontWeight="semibold">
-              Android Apps
-            </Text>
-          </Flex>
-          <Flex
-            rounded="xl"
-            direction="column"
-            mt={4}
-            ml={isNotSmallerScreen ? 4 : 0}
-            bg="gray.100"
-            h="30vh"
-            w="30vh"
-            justify="flex-end"
-            _hover={{ bg: "teal.400" }}
-          >
-            <Icon color="black" p="4" as={DiCodeigniter} w="24" h="24" />
-            <Text color="black" p="4" fontSize="xl" fontWeight="semibold">
-              Flutter Apps
-            </Text>
-          </Flex>
-          <Flex
-            rounded="xl"
-            direction="column"
-            mt={4}
-            ml={isNotSmallerScreen ? 4 : 0}
-            bg="gray.100"
-            h="30vh"
-            w="30vh"
-            justify="flex-end"
-            _hover={{ bg: "green.400" }}
-          >
-            <Icon as={DiWebplatform} p="4" w="24" h="24" color="black" />
-            <Text color="black" p="4" fontSize="xl" fontWeight="semibold">
-              Web Apps
-            </Text>
-          </Flex>
+        <Flex alignSelf="center" direction="row" justifyContent="center" alignItems="center"
+      flexWrap="wrap">
+          {
+            technologies.map((tech)=>{
+              return <SimpleCard key={tech.id} bg={tech.bg} bg_secundary={tech.bg_secundary} icon={tech.icon} text={tech.text} />;
+            })
+          }
+          
         </Flex>
       </Box>
     </Flex>
