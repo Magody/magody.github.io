@@ -4,14 +4,20 @@ import {
   Button,
   Circle,
   Flex,
+  HStack,
   Image,
+  Spacer,
   Stack,
   Text,
-  useColorMode
+  useColorMode,
 } from "@chakra-ui/react";
 import useMediaQueryFixed from "../../hooks/use-media-query";
+import ButtonWhatsapp from "../ui/ButtonWhatsapp";
+import ButtonTelegram from "../ui/ButtonTelegram";
 
-const Presentation = () => {
+const boxSize = "10rem";
+
+const Presentation: React.FC<{ greeting: string }> = (props) => {
   const { colorMode } = useColorMode();
 
   const isDark = colorMode == "dark";
@@ -25,46 +31,82 @@ const Presentation = () => {
         position="absolute"
         bg="blue.100"
         opacity="0.1"
-        w="300px"
-        h="300px"
+        w={boxSize}
+        h={boxSize}
         alignSelf="flex-end"
       />
-      <Flex  direction={isSmallerScreen ? "column" : "row"}
-      p={isSmallerScreen ? "0" : "32"}
-      alignSelf="flex-start">
-        <Box>
-          <Text fontSize="3xl" fontWeight="semibold">
-            Hi, i am
+      <Flex
+        direction={isSmallerScreen ? "column" : "row"}
+        p={isSmallerScreen ? "0" : "4"}
+        w="90vw"
+        maxW="90vw"
+      >
+        <Box
+          style={{
+            flex: 3,
+            
+          }}
+        >
+          <Text
+            textAlign="center"
+            fontSize={isSmallerScreen ? "2xl" : "3xl"}
+            fontWeight="semibold"
+            className="over_particles responsive_text"
+          >
+            If you can imagine it,
           </Text>
           <Text
-            fontSize="5xl"
+            textAlign="center"
+            fontSize={isSmallerScreen ? "3xl" : "5xl"}
+            className="over_particles responsive_text"
             fontWeight="bold"
             bgClip="text"
             bgGradient="linear(to-r, cyan.400, blue.500, purple.600)"
           >
-            Danny
+            You can program it
           </Text>
-          <Text color={isDark ? "gray.200" : "gray.500"}> A dreamer 🗣</Text>
-          <Button
-            mt={8}
-            colorScheme="messenger"
-            onClick={() => window.open("https://magody.github.io")}
+          <Text textAlign="center" color={isDark ? "gray.200" : "gray.500"}>
+            {props.greeting}
+          </Text>
+          <Flex
+            direction={isSmallerScreen ? "column" : "row"}
+            justifyContent="center"
+            alignItems="center"
+            flexWrap="wrap"
           >
-            Work with Me
-          </Button>
-          
+            <Box m="1rem">
+            <ButtonWhatsapp
+              phone="593978654041"
+              text="Hi, Danny. Whats going on?"
+            ></ButtonWhatsapp>
+            </Box>
+            <Box m="1rem">
+            <ButtonTelegram username="magody_pendragon"></ButtonTelegram>
+            </Box>
+            
+            
+          </Flex>
         </Box>
-        <Image
+        <Flex
+          style={{
+            flex: 1,
+          }}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Image
+            className="over_particles"
             alt="My photo"
             mt={isSmallerScreen ? "12" : "0"}
             mb={isSmallerScreen ? "12" : "0"}
-            boxSize="300px"
-            alignSelf="center"
+            w={boxSize}
+            h={boxSize}
             borderRadius="full"
             backgroundColor="transparent"
             boxShadow="lg"
             src="https://avatars.githubusercontent.com/u/37024575?v=4"
           />
+        </Flex>
       </Flex>
     </Stack>
   );

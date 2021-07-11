@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
 
-      <ColorModeScript initialColorMode="light"></ColorModeScript>
+      <ColorModeScript initialColorMode="dark"></ColorModeScript>
       <Layout>
         <link rel="shortcut icon" href={prefix + "/favicon.ico"} />
         <Component {...pageProps} />

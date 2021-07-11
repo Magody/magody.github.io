@@ -1,152 +1,167 @@
-import { Box } from "@chakra-ui/react";
+import { Box, position } from "@chakra-ui/react";
 import React, { useState, useEffect, useRef } from "react";
-import * as THREE from "three";
 import styles from "../Galaxy.module.css";
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-
-//import dynamic from 'next/dynamic';
-//const { OrbitControls } = dynamic(() => import('three/examples/jsm/controls/OrbitControls'));
+import * as THREE from "three";
+import { ThreeWorld } from "../../models/ThreeWorld";
 
 const prefix = (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/images";
 
-const scene = new THREE.Scene();
+const threeWorldGalaxy = new ThreeWorld();
 
-let isFirstRendering = true;
+let INTERSECTED: any;
 
+const pointer = new THREE.Vector2();
 
 const Galaxy = () => {
   console.log("Galaxy");
 
   const [cameraPosition, setCameraPosition] = useState({
-    x: -3,
-    y: 0,
-    z: 30,
+    x: 0,
+    y: 30,
+    z: 10,
   });
 
   useEffect(() => {
-    if (isFirstRendering) {
-      // setup
-      let aspect_ratio = window.innerWidth / window.innerHeight;
-      const htmlElementCanvas = document.querySelector("#bg");
-
-      let camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera();
-      let renderer: THREE.WebGL1Renderer = new THREE.WebGL1Renderer();
-
-      camera = new THREE.PerspectiveCamera(75, aspect_ratio, 0.1, 1000);
-      camera.position.setZ(cameraPosition.z);
-      if (
-        htmlElementCanvas !== null &&
-        htmlElementCanvas instanceof HTMLCanvasElement
-      ) {
-        renderer = new THREE.WebGL1Renderer({
-          canvas: htmlElementCanvas,
-        });
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.render(scene, camera);
-
-        const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-        const material = new THREE.MeshStandardMaterial({
-          color: 0xffff00,
-        });
-        const torus = new THREE.Mesh(geometry, material);
-
-        scene.add(torus);
-
-        const pointLight = new THREE.PointLight(0xffffff);
-        pointLight.position.set(5, 5, 5);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff);
-        scene.add(pointLight, ambientLight);
-
-        const lightHelper = new THREE.PointLightHelper(pointLight);
-        const gridHelper = new THREE.GridHelper(200, 50);
-        scene.add(lightHelper, gridHelper);
-
-        const controls = new OrbitControls(camera, renderer.domElement);
-
-        renderer.render(scene, camera);
-
-        const animate = () => {
-          requestAnimationFrame(animate);
-
-          torus.rotation.x += 0.01;
-          torus.rotation.y += 0.005;
-          torus.rotation.z += 0.01;
-
-          moon.rotation.x += 0.005;
-
-          renderer.render(scene, camera);
-        };
-
-        const addStar = () => {
-          const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-          const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-          const star = new THREE.Mesh(geometry, material);
-          
-          const x = THREE.MathUtils.randFloatSpread(100);
-          const y = THREE.MathUtils.randFloatSpread(100);
-          const z = THREE.MathUtils.randFloatSpread(100);
-
-          // console.log(x,y,z)
-
-          star.position.set(x, y, z);
-          scene.add(star);
-        };
-
-        for (let index = 0; index < 200; index++) {
-          addStar();
-          
-        }
-
-        const spaceTexture = new THREE.TextureLoader().load(prefix + '/space.jpg');
-        scene.background = spaceTexture;
-
-        // Avatar
-
-        const texture = new THREE.TextureLoader().load(prefix + '/photo.jpg');
-
-        const photo = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: texture }));
-
-        scene.add(photo);
-
-        // Moon
-
-        const moonTexture = new THREE.TextureLoader().load(prefix+'/moon.jpg');
-        const normalTexture = new THREE.TextureLoader().load(prefix+'/normal.jpg');
-
-        const moon = new THREE.Mesh(
-          new THREE.SphereGeometry(3, 32, 32),
-          new THREE.MeshStandardMaterial({
-            map: moonTexture,
-            normalMap: normalTexture,
-          })
-        );
-
-        scene.add(moon);
-
-        moon.position.z = 30;
-        moon.position.setX(-10);
-
-        photo.position.z = -5;
-        photo.position.x = 2;
-
-
-
-        animate();
-      } else {
-        throw new Error("Error, no existe el elemento canvas");
-      }
-
-      isFirstRendering = false;
-    }
-  }, [cameraPosition]);
+    setupGalaxy(window.innerWidth, window.innerHeight / 2); // window.innerHeight
+    threeWorldGalaxy.camera.position.setZ(30);
+  }, []);
 
   return (
     <Box>
       <canvas id="bg"></canvas>
     </Box>
   );
+};
+
+const setupGalaxy = (width: number, height: number) => {
+  // setup
+  let aspect_ratio = window.innerWidth / window.innerHeight;
+  const htmlElementCanvas = document.querySelector("#bg");
+  if (
+    htmlElementCanvas !== null &&
+    htmlElementCanvas instanceof HTMLCanvasElement
+  ) {
+    const renderer = new THREE.WebGL1Renderer({
+      canvas: htmlElementCanvas,
+    });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    threeWorldGalaxy.init(
+      new THREE.Scene(),
+      new THREE.PerspectiveCamera(75, aspect_ratio, 0.1, 1000),
+      renderer,
+      true
+    );
+    const torus = threeWorldGalaxy.addTorus(15, 3, 5, 100, 0x29a680, {
+      x: 0,
+      y: 20,
+      z: -30,
+    });
+    const pointLight = new THREE.PointLight(0xffffff);
+    pointLight.position.set(5, 5, 5);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff);
+    threeWorldGalaxy.scene.add(pointLight, ambientLight);
+
+    const lightHelper = new THREE.PointLightHelper(pointLight);
+    const gridHelper = new THREE.GridHelper(200, 50);
+    threeWorldGalaxy.scene.add(lightHelper, gridHelper);
+
+    for (let index = 0; index < 200; index++) {
+      threeWorldGalaxy.addStar();
+    }
+
+    const spaceTexture = new THREE.TextureLoader().load(prefix + "/space.jpg");
+    threeWorldGalaxy.scene.background = spaceTexture;
+
+    // Avatar
+
+    const texture = new THREE.TextureLoader().load(prefix + "/photo.jpg");
+
+    const photo = new THREE.Mesh(
+      new THREE.BoxGeometry(3, 3, 3),
+      new THREE.MeshBasicMaterial({ map: texture })
+    );
+    photo.position.x = 10;
+    photo.position.y = 10;
+    threeWorldGalaxy.scene.add(photo);
+
+    // Moon
+    const moonTexture = new THREE.TextureLoader().load(prefix + "/moon.jpg");
+    const normalTexture = new THREE.TextureLoader().load(
+      prefix + "/normal.jpg"
+    );
+    const moon = threeWorldGalaxy.addMoon(moonTexture, normalTexture, {
+      x: -10,
+      y: 10,
+      z: 20,
+    });
+
+    const onPointerMove = ( event: { clientX: number; clientY: number; } ) => {
+
+      pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+
+      
+    }
+
+    const onPointerDown = ( event: { clientX: number; clientY: number; } ) => {
+
+      if (INTERSECTED && INTERSECTED.material.emissive !== undefined && INTERSECTED.type === "Mesh"){
+
+        console.log("MOUSE DOWN", INTERSECTED)
+        alert("UUID: " + INTERSECTED.uuid)
+      }
+
+      
+    }
+
+    document.addEventListener( 'mousemove', onPointerMove );
+    document.addEventListener( 'mousedown', onPointerDown );
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      torus.rotation.x += 0.01;
+      torus.rotation.y += 0.005;
+      torus.rotation.z += 0.01;
+
+      photo.rotation.y -= 0.01;
+
+      moon.rotation.x += 0.005;
+
+      const intersects = threeWorldGalaxy.rayCastToPositionFromCamera(pointer);
+      if (intersects != null && intersects.length > 0) {
+        // console.log("intersec")
+        if (INTERSECTED != intersects[0].object) {
+          if (INTERSECTED && INTERSECTED.material.emissive !== undefined)
+            INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+
+          INTERSECTED = intersects[0].object;
+          if(INTERSECTED.material.emissive !== undefined){
+            INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+            INTERSECTED.material.emissive.setHex(0xff0000);
+          }
+          
+        }
+      } else {
+        if (INTERSECTED && INTERSECTED.material.emissive !== undefined)
+          INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+
+        INTERSECTED = null;
+      }
+      threeWorldGalaxy.renderer.render(
+        threeWorldGalaxy.scene,
+        threeWorldGalaxy.camera
+      );
+    };
+
+    // continuous animation
+    animate();
+  } else {
+    throw new Error("Canvas element doesnt exist");
+  }
 };
 
 export default Galaxy;
