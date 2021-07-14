@@ -1,5 +1,5 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import { Flex, Image, Text } from '@chakra-ui/react';
+import React from 'react';
 
 export const SimpleSection: React.FC<{
   text: string;
@@ -11,14 +11,16 @@ export const SimpleSection: React.FC<{
       <Text mt="1rem" className="responsive_text">
         {props.text}
       </Text>
-      <Image
-        m="1rem"
-        alt=""
-        css={props.customCSS}
-        backgroundColor="transparent"
-        boxShadow="lg"
-        src={props.srcImage}
-      ></Image>
+      {props.srcImage != '' && (
+        <Image
+          m="1rem"
+          alt=""
+          css={props.customCSS}
+          backgroundColor="transparent"
+          boxShadow="lg"
+          src={props.srcImage}
+        ></Image>
+      )}
     </Flex>
   );
 };
