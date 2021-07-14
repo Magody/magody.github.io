@@ -1,23 +1,23 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import React from "react";
-import { SimpleSection } from "../../../components/projects/SimpleSection";
-import useMediaQueryFixed from "../../../hooks/use-media-query";
+import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import React from 'react';
+import { SimpleSection } from '../../../components/projects/SimpleSection';
+import useMediaQueryFixed from '../../../hooks/use-media-query';
 
 const prefix =
-  (process.env.NEXT_PUBLIC_BASE_PATH || "") +
-  "/images/projects/AndroidGestureRecognition";
+  (process.env.NEXT_PUBLIC_BASE_PATH || '') +
+  '/images/projects/machine_learning/AndroidGestureRecognition';
 
 const AndroidGestureRecognition: React.FC<{ basePathImageDir: string }> = (
-  props
+  props,
 ) => {
-  const isSmallerScreen = useMediaQueryFixed("(max-width:600px)");
+  const isSmallerScreen = useMediaQueryFixed('(max-width:600px)');
 
   const cssFullImage = {
-    maxWidth: "100%",
+    maxWidth: '100%',
   };
   const cssBoxImage = {
-    w: "15rem",
-    h: "15rem",
+    w: '15rem',
+    h: '15rem',
   };
   return (
     <Flex
@@ -32,80 +32,81 @@ const AndroidGestureRecognition: React.FC<{ basePathImageDir: string }> = (
       </Heading>
 
       <SimpleSection
-        text="El proyecto consiste en reconocer gestos hechos con el celular, utilizando
-        el acelerómetro y giroscopio del teléfono para predecir un tipo personalizado de movimiento que se lo entrenó anteriormente y enviar dicha predicción a un servidor que dibujará en pantalla símbolos según el gesto predicho por la red.
-        Este es un pequeño avance para en un futuro poder guardar cualquier tipo de gesto y utilizar el celular como un mando de realidad aumentada en aplicaciones o videojuegos en la web."
+        text="The project consists of recognizing gestures made with the cell phone, using the phone's accelerometer and gyroscope to predict a custom type of movement that was previously
+        the accelerometer and gyroscope of the phone to predict a custom type of movement that was previously trained and send that prediction to a server that will draw symbols on the screen according to the gesture predicted by the network.
+        This is a small step forward to be able to save any type of gesture in the future and use the cell phone as an augmented reality controller in applications or video games on the web."
         customCSS={cssBoxImage}
-        srcImage={prefix + "/0.png"}
+        srcImage={prefix + '/0.png'}
       />
 
       <Box m="1rem" bg="red" width="90vw" maxWidth="100vw">
         <iframe
           width="100%"
-          height={isSmallerScreen ? "auto" : "400px"}
+          height={isSmallerScreen ? 'auto' : '400px'}
           src="https://web.microsoftstream.com/embed/video/a2b94768-ca42-4826-a04d-c2cf1d594bea?autoplay=false&showinfo=true"
           allowFullScreen
-          style={{ border: "none" }}
+          style={{ border: 'none' }}
         ></iframe>
       </Box>
 
       <SimpleSection
-        text="Mediante el movimiento de la mano con el celular los sensores recolectan
-        datos, y estos datos serán usandos para entrenar a una red neuronal
+        text="Through the movement of the hand with the cell phone, the sensors collect data, and this data will be used to train a neural network.
+        data, and this data will be used to train a feedforward neural network.
         feedforward."
         customCSS={cssFullImage}
-        srcImage={prefix + "/1.png"}
+        srcImage={prefix + '/1.png'}
       />
 
       <SimpleSection
-        text="El sistema posee un CRUD de operaciones para la gestión de los gestos y
-        otra información útil de los usuarios. Para el entrenamiento es
-        necesario guardar almenos 10 repeticiones por cada gesto, a partir de
-        esos ejemplos se generan otros 200 utilizando Data augmentation. Es
-        decir, se aplica varias operaciones matemáticas a los datos de modo qu
-        se generen nuevos datos pero que no pierdan la esencia principal."
+        text="The system has a CRUD of operations for the management of gestures and other useful user information.
+        other useful user information. For training it is necessary to
+        at least 10 repetitions must be stored for each gesture, and from these examples another
+        from these examples another 200 are generated using Data augmentation. It is
+        that is, several mathematical operations are applied to the data so that new data is generated
+        new data are generated but without losing the main essence."
         customCSS={cssFullImage}
-        srcImage={prefix + "/2.png"}
+        srcImage={prefix + '/2.png'}
       />
 
       <SimpleSection
-        text="El sistema también cuenta con un panel de administración de los datos,
-        esto fue hecho con Angular."
+        text="The system also has a data management panel, this was done with Angular."
         customCSS={cssFullImage}
-        srcImage={prefix + "/3.png"}
+        srcImage={prefix + '/3.png'}
       />
 
       <SimpleSection
-        text="La red neuronal recibe una entrada de 600 variables: 1
-        00 datos por cada eje y por cada tipo de sensor 
-        (Giroscopio y Acelerómetro) con esta entrada busca predeir 
-        la clase del gesto. La aplicación se conecta a un servidor y 
-        le comunica su predicción, el servidor entonces dibuja en la 
-        pantalla una flecha si fue un movimiento lateral o una cruz si 
-        fue un movimiento como disparo. Estos fueron los dos tipos de gestos
-         principales con los que se entrenó a la red."
+        text="The neural network receives an input of 600 variables: 1
+        00 data for each axis and for each type of sensor (Gyroscope and Accelerometer). 
+        (Gyroscope and Accelerometer) with this input it seeks to predict 
+        the type of gesture. The application connects to a server and 
+        communicates its prediction, the server then draws on the screen an arrow if it was an 
+        the screen an arrow if it was a lateral movement or a cross if it was a shooting movement. 
+        was a movement such as a shot. These were the two main types of gestures
+         the network was trained with."
         customCSS={cssFullImage}
-        srcImage={prefix + "/4.png"}
+        srcImage={prefix + '/4.png'}
       />
 
       <SimpleSection
         text=""
         customCSS={cssFullImage}
-        srcImage={prefix + "/5.png"}
+        srcImage={prefix + '/5.png'}
       />
 
       <Text className="responsive_text">
-        Para el entrenamiento se utilizaron pocas épocas y una tasa de
-        aprendizaje de 0.01 con 600 neuronas de entrada, 35 en una capa oculta,
-        18 en una segunda capa oculta y N neuronas en la capa de salida. N
-        depende de la cantidad de gestos que haya guardado el usuario. Como
-        conclusión se obtuvo un porcentaje de acierto del 80%. La red neuronal
-        no pudo reconocer bien los tipos de gestos cuando se utilizaba el
-        dispositivo en modo streaming (en vivo) pero en predicciones estáticas
-        en donde solo se guardaba el gesto y posteriormente se mandaba a
-        predecir, la red predecía correctamente. Para el manejo de señales lo
-        mejor será utilizar redes convolucionales o redes neuronales recurrentes
-        para lograr una mayor puntuación de precisión.
+        Few epochs and a learning rate of 0.01 with 600 input neurons, 35 in a
+        hidden layer, were used for training. 0.01 with 600 input neurons, 35 in
+        a hidden layer, 18 in a second hidden layer and N neurons in the output
+        layer, 18 in a second hidden layer and N neurons in the output layer. N
+        depends on the number of gestures saved by the user. As conclusion, a
+        hit rate of 80% was obtained. The neural network could not recognize
+        gesture types well when the device was used in streaming mode (live) but
+        in static in streaming mode (live), but in static predictions, where
+        only the gesture was where only the gesture was saved and then sent to
+        be predicted, the predicted, the network predicted correctly. For signal
+        handling, it is best to use convolutional or convolutional best to use
+        convolutional networks or recurrent neural networks to achieve a higher
+        accuracy score. to achieve a higher accuracy score.
       </Text>
     </Flex>
   );

@@ -1,21 +1,21 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
-import React from "react";
-import { SimpleSection } from "../../../components/projects/SimpleSection";
-import useMediaQueryFixed from "../../../hooks/use-media-query";
+import { Box, Flex, Heading } from '@chakra-ui/react';
+import React from 'react';
+import { SimpleSection } from '../../../components/projects/SimpleSection';
+import useMediaQueryFixed from '../../../hooks/use-media-query';
 
 const prefix =
-  (process.env.NEXT_PUBLIC_BASE_PATH || "") +
-  "/images/projects/RecommendationSystemMatrix";
+  (process.env.NEXT_PUBLIC_BASE_PATH || '') +
+  '/images/projects/machine_learning/RecommendationSystemMatrix';
 
 const RecommendationSystemMatrix = () => {
-  const isSmallerScreen = useMediaQueryFixed("(max-width:600px)");
+  const isSmallerScreen = useMediaQueryFixed('(max-width:600px)');
 
   const cssFullImage = {
-    maxWidth: "100%",
+    maxWidth: '100%',
   };
   const cssBoxImage = {
-    w: "15rem",
-    h: "15rem",
+    w: '15rem',
+    h: '15rem',
   };
 
   return (
@@ -31,55 +31,55 @@ const RecommendationSystemMatrix = () => {
       </Heading>
 
       <SimpleSection
-        text="Muchas empresas no poseen un sistema de recomendación sobre sus productos ya sea por falta de conocimiento de estos sistemas o falta de dinero. Y dado que entre el 40% y 60% (según Google) de consumo de contenido de las grandes empresas viene de recomendaciones, existe la necesidad de crear una forma económica y reutilizable de realizar recomendaciones grupales y personalizadas de alta calidad con el fin de que las empresas incrementen sus ganancias al detectar similitudes entre los gustos de los clientes de forma colaborativa. Se desarrollará un sistema recomendador con componentes reutilizables y parametrizables para que las empresas pequeñas o medianas puedan utilizarlo a bajo costo con poco desarrollo por parte de los programadores de dicha empresa."
+        text="Many companies do not have a recommendation system for their products either due to lack of knowledge of these systems or lack of money. And given that between 40% and 60% (according to Google) of content consumption of large companies comes from recommendations, there is a need to create a cost-effective and reusable way to make high quality group and personalized recommendations in order for companies to increase their profits by detecting similarities between customers' tastes in a collaborative way. A recommender system with reusable and parameterizable components will be developed so that small and medium-sized companies can use it at low cost with little development by the programmers of the company."
         customCSS={cssBoxImage}
-        srcImage={prefix + "/0.png"}
+        srcImage={prefix + '/0.png'}
       />
 
       <Box m="1rem" bg="red" width="90vw" maxWidth="100vw">
         <iframe
           width="100%"
-          height={isSmallerScreen ? "auto" : "400px"}
+          height={isSmallerScreen ? 'auto' : '400px'}
           src="https://web.microsoftstream.com/embed/video/e6e53014-6335-4a98-a076-e79ab6bc5916?autoplay=false&showinfo=true"
           allowFullScreen
-          style={{ border: "none" }}
+          style={{ border: 'none' }}
         ></iframe>
       </Box>
 
       <SimpleSection
-        text="Se diseñó un diagrama de las etapas a recorrerse para recomendar un producto. Se parte con una gran cantidad de productos y se los va filtrando poco a poco: se van generando posibles candidatos con la factorización de matrices y luego se calcula similaridades entre los productos para luego tomar al top 10 de productos la mejor puntuación"
+        text="A diagram of the steps to be followed to recommend a product was designed. We start with a large number of products and filter them little by little: possible candidates are generated with matrix factorization and then similarities between the products are calculated to then take the top 10 products with the best score."
         customCSS={cssFullImage}
-        srcImage={prefix + "/1.png"}
+        srcImage={prefix + '/1.png'}
       />
 
       <SimpleSection
-        text="La idea detrás de la factorización de matrices es que se quiere predecir la tabla de puntuación de todos los usuarios, inclusive los valores que todavía no hay calificado. Esto se logra multiplicando una matriz A por una matriz B, cada una con parámetros. Esta multiplicación tendrá un error por lo que con un optimizador se van reajustando los valores de ambas matrices hasta que el error sea muy bajo y por lo tanto el sistema sea capaz de predecir valores que aún no existen."
+        text="The idea behind matrix factorization is that you want to predict the score table of all users, including values that are not yet qualified. This is achieved by multiplying a matrix A by a matrix B, each with parameters. This multiplication will have an error, so with an optimizer the values of both matrices are readjusted until the error is very low and therefore the system is able to predict values that do not yet exist."
         customCSS={cssFullImage}
-        srcImage={prefix + "/2.png"}
+        srcImage={prefix + '/2.png'}
       />
 
       <SimpleSection
-        text="Utilizando Python y Flask se diseñó una pequeña tienda de productos"
+        text="Using Python and Flask, a small product store was designed."
         customCSS={cssFullImage}
-        srcImage={prefix + "/3.png"}
+        srcImage={prefix + '/3.png'}
       />
 
       <SimpleSection
-        text="Todos estos productos pueden ser calificados del 1 al 5"
+        text="All these products can be rated from 1 to 5."
         customCSS={cssFullImage}
-        srcImage={prefix + "/4.png"}
+        srcImage={prefix + '/4.png'}
       />
 
       <SimpleSection
-        text="Los usuarios calificarán algunos productos y otros no. De forma colaborativa si una persona A le gusta algunos productos que una persona B, entonces si B le gusta un nuevo producto hay una probabilidad de que ese producto también le guste a A. La factorización de matrices realiza este proceso generando algunos candidatos, se usa también el contexto e historial reciente de búsqueda de la persona A para balancear las puntuaciones, en la fase de re scoring se determina productos que el cliente A ya conoce y por lo tanto se los descarta. La idea es siempre dar recomendaciones frescas."
+        text="Users will rate some products and not others. Collaboratively if a person A likes some products that a person B likes, then if B likes a new product there is a probability that A will also like that product. Matrix factorization performs this process by generating some candidates, it also uses the context and recent search history of person A to balance the scores, in the re scoring phase it determines products that customer A already knows about and therefore discards them. The idea is always to give fresh recommendations."
         customCSS={cssFullImage}
-        srcImage={prefix + "/5.png"}
+        srcImage={prefix + '/5.png'}
       />
 
       <SimpleSection
-        text="Nota: para este proyecto también se realizó un panel de administración"
+        text="Note: an administration panel was also created for this project."
         customCSS={cssFullImage}
-        srcImage={prefix + "/6.png"}
+        srcImage={prefix + '/6.png'}
       />
     </Flex>
   );

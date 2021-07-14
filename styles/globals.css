@@ -20,17 +20,16 @@ a {
   width: 100%;
   height: 100%;
 }
-.particles{
+.particles {
   position: relative;
   width: 100%;
-
 }
 
-.over_particles{
+.over_particles {
   z-index: 1;
 }
 
-.ignore_click_events{
+.ignore_click_events {
   pointer-events: none;
 }
 
@@ -38,15 +37,31 @@ a {
   word-break: break-word;
 }
 
-.nav_button{
+.nav_button {
   background: rgb(80, 189, 174);
 }
 
-.nav_button:hover{
+.nav_button:hover {
   background: rgb(28, 211, 132);
   cursor: pointer;
 }
 
-.nav_button_active{
+.nav_button_active {
   background: rgb(28, 211, 132);
+}
+
+.item {
+  position: relative;
+  display: inline-block;
+}
+
+.notify-badge {
+  position: absolute;
+  left: 0px;
+  top: 1rem;
+  background: rgb(14, 151, 133);
+  text-align: center;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
 }
