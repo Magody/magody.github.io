@@ -45,6 +45,7 @@ const CardProject: React.FC<{
           position="absolute"
           fontSize="1rem"
           bottom="0"
+          color="white"
           bg="black"
           p="0.3rem"
           textAlign="center"
