@@ -1,0 +1,21 @@
+h1 {
+  color: white;
+  text-align: center;
+}
+
+h3 {
+  color: white;
+  text-align: center;
+}
+
+h4 {
+  color: white;
+  text-align: center;
+  background-color: black;
+}
+
+canvas {
+  margin-left: 0px;
+  margin-top: 0px;
+  background-color: white;
+}

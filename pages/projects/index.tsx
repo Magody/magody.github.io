@@ -15,6 +15,7 @@ import useMediaQueryFixed from '../../hooks/use-media-query';
 import { IoMdConstruct } from 'react-icons/io';
 import { FaProjectDiagram } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
+import { EnumProjectTypes, Project } from '../../models/Project';
 
 const CardProject = dynamic(
   () => import('../../components/ui/cards/CardProject'),
@@ -23,49 +24,41 @@ const CardProject = dynamic(
 const prefix = (process.env.NEXT_PUBLIC_BASE_PATH || '') + '/images/projects';
 
 const projects = [
-  {
-    id: 1,
-    type: 'Machine Learning',
-    colorBadge: 'rgb(14, 151, 133)',
-    destination: '/projects/machine_learning/AndroidGestureRecognition',
-    srcImage: prefix + '/machine_learning/AndroidGestureRecognition' + '/0.png',
-    title: 'Android Gesture Recognition',
-    bgBox: 'cyan',
-    tooltip: 'NN with signals',
-  },
-  {
-    id: 2,
-    type: 'Machine Learning',
-    colorBadge: 'rgb(14, 151, 133)',
-    destination: '/projects/machine_learning/RecommendationSystemMatrix',
-    srcImage:
-      prefix + '/machine_learning/RecommendationSystemMatrix' + '/0.png',
-    title: 'Recommendation System',
-    bgBox: 'cyan',
-    tooltip: 'Collaborative filtering with tensorflow',
-  },
-  {
-    id: 3,
-    type: 'Machine Learning',
-    colorBadge: 'rgb(14, 151, 133)',
-    destination: '/projects/machine_learning/HumanLearnsToSurvive',
-    srcImage: prefix + '/machine_learning/HumanLearnsToSurvive' + '/1.png',
-    title: 'Genetic algorithms: Human learns to survive',
-    bgBox: 'cyan',
-    tooltip:
-      'A human learn to avoid collisions with monsters, and to collect life',
-  },
-  {
-    id: 4,
-    type: 'Videogames',
-    colorBadge: 'rgb(157, 112, 30)',
-    destination: '/projects/videogames/Adodot',
-    srcImage: prefix + '/videogames/Adodot' + '/0.png',
-    title: 'RPG mini videogame',
-    bgBox: 'cyan',
-    tooltip:
-      'Videogame prototype where main character can do a lot of magic and stop time',
-  },
+  new Project(
+    'machineLearning',
+    '/projects/machine_learning/AndroidGestureRecognition',
+    prefix + '/machine_learning/AndroidGestureRecognition' + '/0.png',
+    'Android Gesture Recognition',
+    'Neural Network using signals',
+  ),
+  new Project(
+    'machineLearning',
+    '/projects/machine_learning/RecommendationSystemMatrix',
+    prefix + '/machine_learning/RecommendationSystemMatrix' + '/0.png',
+    'Recommendation System',
+    'Collaborative filtering with tensorflow',
+  ),
+  new Project(
+    'machineLearning',
+    '/projects/machine_learning/HumanLearnsToSurvive',
+    prefix + '/machine_learning/HumanLearnsToSurvive' + '/1.png',
+    'Genetic algorithms: Human learns to survive',
+    'A human learn to avoid collisions with monsters and to collect life',
+  ),
+  new Project(
+    'videogames',
+    '/projects/videogames/Adodot',
+    prefix + '/videogames/Adodot' + '/0.png',
+    'RPG mini videogame',
+    'Videogame prototype where main character can do a lot of magic and stop time',
+  ),
+  new Project(
+    'applications',
+    '/projects/applications/GameOfLife',
+    prefix + '/applications/GameOfLife' + '/0.png',
+    'Play now online the game of life!',
+    'A game with 0 players, you can play it online!',
+  ),
 ];
 
 const Index = () => {
@@ -94,11 +87,11 @@ const Index = () => {
             key={project.id}
             srcImage={project.srcImage}
             title={project.title}
-            bgBox={project.bgBox}
+            bgBox={project.type.bgBox}
             tooltip={project.tooltip}
             destination={project.destination}
-            type={project.type}
-            colorBadge={project.colorBadge}
+            type={project.type.name}
+            colorBadge={project.type.colorBadge}
           ></CardProject>
         );
       })}
