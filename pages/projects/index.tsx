@@ -35,7 +35,7 @@ const projects = [
     'machineLearning',
     '/projects/machine_learning/RecommendationSystemMatrix',
     prefix + '/machine_learning/RecommendationSystemMatrix' + '/0.png',
-    'Recommendation System',
+    'C.F. Recommendation System for a electronic store',
     'Collaborative filtering with tensorflow',
   ),
   new Project(
@@ -58,6 +58,15 @@ const projects = [
     prefix + '/applications/GameOfLife' + '/0.png',
     'Play now online the game of life!',
     'A game with 0 players, you can play it online!',
+  ),
+  new Project(
+    'machineLearning',
+    '/projects/machine_learning/RecommendationSystemGeneticAlgorithms',
+    prefix +
+      '/machine_learning/RecommendationSystemGeneticAlgorithms' +
+      '/0.png',
+    'Genetic algorithms for YOUTUBE recommendations',
+    'Recommendation system with genetic algotrithms using Youtube videos',
   ),
 ];
 
