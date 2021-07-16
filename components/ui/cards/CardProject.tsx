@@ -27,17 +27,20 @@ const CardProject: React.FC<{
         borderRadius="1rem"
         className="item"
       >
-        <span className="notify-badge" style={{ background: props.colorBadge }}>
+        <span className="badge" style={{ background: props.colorBadge }}>
           {props.type}
         </span>
-        <Image
-          w="100%"
-          height="100%"
-          alt=""
-          backgroundColor="transparent"
-          boxShadow="lg"
-          src={props.srcImage}
-        ></Image>
+
+        <Tooltip label={props.tooltip}>
+          <Image
+            w="100%"
+            height="100%"
+            alt=""
+            backgroundColor="transparent"
+            boxShadow="lg"
+            src={props.srcImage}
+          ></Image>
+        </Tooltip>
         <Text
           position="absolute"
           fontSize="1rem"

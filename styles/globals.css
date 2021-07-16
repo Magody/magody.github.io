@@ -55,9 +55,10 @@ a {
   display: inline-block;
 }
 
-.notify-badge {
+.badge {
   position: absolute;
   left: 0px;
+  transform: rotateZ('45');
   top: 1rem;
   background: rgb(14, 151, 133);
   text-align: center;
