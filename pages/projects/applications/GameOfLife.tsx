@@ -122,8 +122,8 @@ const GameOfLife = () => {
 
       <Text m="0.5rem" ref={refGenerationFeedback}></Text>
       <Flex direction="row" m="0.3rem" w="100%">
-        <Box m="1rem" flex="1">
-          <Text m="0.2rem">Generations: {generations}</Text>
+        <Box m="0.5rem" flex="1">
+          <Text>Generations: {generations}</Text>
           <Slider
             //bg="red"
             onChange={handlerOnChangeGenerations}
@@ -141,7 +141,7 @@ const GameOfLife = () => {
           <Text>Generations of game</Text>
         </Box>
 
-        <Box id="duracion" m="0.3rem" flex="1">
+        <Box id="duracion" m="0.5rem" flex="1">
           <Text>Duration: {duration} ms</Text>
           <Slider
             //bg="blue"

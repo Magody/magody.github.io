@@ -31,6 +31,14 @@ const projects = [
     'Android Gesture Recognition',
     'Neural Network using signals',
   ),
+
+  new Project(
+    'videogames',
+    '/projects/videogames/EthicalOwl',
+    prefix + '/videogames/EthicalOwl' + '/mr robot.jpg',
+    'Operative system simulation for a hacking game in C',
+    'Game inspired on hacking, we created a mini OS with various functions',
+  ),
   new Project(
     'machineLearning',
     '/projects/machine_learning/RecommendationSystemMatrix',
@@ -44,13 +52,6 @@ const projects = [
     prefix + '/machine_learning/HumanLearnsToSurvive' + '/1.png',
     'Genetic algorithms: Human learns to survive',
     'A human learn to avoid collisions with monsters and to collect life',
-  ),
-  new Project(
-    'videogames',
-    '/projects/videogames/Adodot',
-    prefix + '/videogames/Adodot' + '/0.png',
-    'RPG mini videogame',
-    'Videogame prototype where main character can do a lot of magic and stop time',
   ),
   new Project(
     'applications',
@@ -67,6 +68,13 @@ const projects = [
       '/0.png',
     'Genetic algorithms for YOUTUBE recommendations',
     'Recommendation system with genetic algotrithms using Youtube videos',
+  ),
+  new Project(
+    'videogames',
+    '/projects/videogames/Adodot',
+    prefix + '/videogames/Adodot' + '/0.png',
+    'RPG mini videogame',
+    'Videogame prototype where main character can do a lot of magic and stop time',
   ),
 ];
 

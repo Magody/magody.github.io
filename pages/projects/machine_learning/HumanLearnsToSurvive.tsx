@@ -46,7 +46,7 @@ const HumanLearnsToSurvive = () => {
             width: '100%',
             height: '100%',
           }}
-          title="Adodot"
+          title="Human learns to survive"
         ></iframe>
         <script src="https://player.vimeo.com/api/player.js"></script>
       </Flex>

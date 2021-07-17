@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 import { SimpleSection } from '../../../components/projects/SimpleSection';
@@ -35,16 +36,6 @@ const RecommendationSystemMatrix = () => {
         customCSS={cssBoxImage}
         srcImage={prefix + '/0.png'}
       />
-
-      <Box m="1rem" bg="red" width="90vw" maxWidth="100vw">
-        <iframe
-          width="100%"
-          height={isSmallerScreen ? 'auto' : '400px'}
-          src="https://web.microsoftstream.com/embed/video/e6e53014-6335-4a98-a076-e79ab6bc5916?autoplay=false&showinfo=true"
-          allowFullScreen
-          style={{ border: 'none' }}
-        ></iframe>
-      </Box>
 
       <SimpleSection
         text="A diagram of the steps to be followed to recommend a product was designed. We start with a large number of products and filter them little by little: possible candidates are generated with matrix factorization and then similarities between the products are calculated to then take the top 10 products with the best score."

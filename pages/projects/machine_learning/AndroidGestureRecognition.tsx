@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { SimpleSection } from '../../../components/projects/SimpleSection';
@@ -38,16 +39,6 @@ const AndroidGestureRecognition: React.FC<{ basePathImageDir: string }> = (
         customCSS={cssBoxImage}
         srcImage={prefix + '/0.png'}
       />
-
-      <Box m="1rem" bg="red" width="90vw" maxWidth="100vw">
-        <iframe
-          width="100%"
-          height={isSmallerScreen ? 'auto' : '400px'}
-          src="https://web.microsoftstream.com/embed/video/a2b94768-ca42-4826-a04d-c2cf1d594bea?autoplay=false&showinfo=true"
-          allowFullScreen
-          style={{ border: 'none' }}
-        ></iframe>
-      </Box>
 
       <SimpleSection
         text="Through the movement of the hand with the cell phone, the sensors collect data, and this data will be used to train a neural network.
