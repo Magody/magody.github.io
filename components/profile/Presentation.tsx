@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
   Circle,
+  Fade,
   Flex,
   HStack,
   Image,
@@ -10,20 +11,27 @@ import {
   Stack,
   Text,
   useColorMode,
-} from "@chakra-ui/react";
-import useMediaQueryFixed from "../../hooks/use-media-query";
-import ButtonWhatsapp from "../ui/ButtonWhatsapp";
-import ButtonTelegram from "../ui/ButtonTelegram";
+} from '@chakra-ui/react';
+import useMediaQueryFixed from '../../hooks/use-media-query';
+import ButtonWhatsapp from '../ui/ButtonWhatsapp';
+import ButtonTelegram from '../ui/ButtonTelegram';
 
-const boxSize = "10rem";
+const boxSize = '10rem';
 
 const Presentation: React.FC<{ greeting: string }> = (props) => {
   const { colorMode } = useColorMode();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const isDark = colorMode == "dark";
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(true);
+    }, 1000);
+  }, []);
+
+  const isDark = colorMode == 'dark';
   // console.log("presentation")
 
-  const isSmallerScreen = useMediaQueryFixed("(max-width:600px)");
+  const isSmallerScreen = useMediaQueryFixed('(max-width:600px)');
 
   return (
     <Stack>
@@ -36,20 +44,19 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
         alignSelf="flex-end"
       />
       <Flex
-        direction={isSmallerScreen ? "column" : "row"}
-        p={isSmallerScreen ? "0" : "4"}
+        direction={isSmallerScreen ? 'column' : 'row'}
+        p={isSmallerScreen ? '0' : '4'}
         w="90vw"
         maxW="90vw"
       >
         <Box
           style={{
             flex: 3,
-            
           }}
         >
           <Text
             textAlign="center"
-            fontSize={isSmallerScreen ? "2xl" : "3xl"}
+            fontSize={isSmallerScreen ? '2xl' : '3xl'}
             fontWeight="semibold"
             className="over_particles responsive_text"
           >
@@ -57,7 +64,7 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
           </Text>
           <Text
             textAlign="center"
-            fontSize={isSmallerScreen ? "3xl" : "5xl"}
+            fontSize={isSmallerScreen ? '3xl' : '5xl'}
             className="over_particles responsive_text"
             fontWeight="bold"
             bgClip="text"
@@ -65,27 +72,27 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
           >
             You can program it
           </Text>
-          <Text textAlign="center" color={isDark ? "gray.200" : "gray.500"}>
+          <Text textAlign="center" color={isDark ? 'gray.200' : 'gray.500'}>
             {props.greeting}
           </Text>
-          <Flex
-            direction={isSmallerScreen ? "column" : "row"}
-            justifyContent="center"
-            alignItems="center"
-            flexWrap="wrap"
-          >
-            <Box m="1rem">
-            <ButtonWhatsapp
-              phone="593978654041"
-              text="Hi, Danny. Whats going on?"
-            ></ButtonWhatsapp>
-            </Box>
-            <Box m="1rem">
-            <ButtonTelegram username="magody_pendragon"></ButtonTelegram>
-            </Box>
-            
-            
-          </Flex>
+          <Fade in={isOpen}>
+            <Flex
+              direction={isSmallerScreen ? 'column' : 'row'}
+              justifyContent="center"
+              alignItems="center"
+              flexWrap="wrap"
+            >
+              <Box m="1rem">
+                <ButtonWhatsapp
+                  phone="593978654041"
+                  text="Hi, Danny. Whats going on?"
+                ></ButtonWhatsapp>
+              </Box>
+              <Box m="1rem">
+                <ButtonTelegram username="magody_pendragon"></ButtonTelegram>
+              </Box>
+            </Flex>
+          </Fade>
         </Box>
         <Flex
           style={{
@@ -97,7 +104,7 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
           <Image
             className="over_particles"
             alt="My photo"
-            m={isSmallerScreen ? "0.5rem" : "0"}
+            m={isSmallerScreen ? '0.5rem' : '0'}
             w={boxSize}
             h={boxSize}
             borderRadius="full"

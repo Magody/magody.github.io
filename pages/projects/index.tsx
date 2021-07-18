@@ -76,6 +76,14 @@ const projects = [
     'RPG mini videogame',
     'Videogame prototype where main character can do a lot of magic and stop time',
   ),
+
+  new Project(
+    'ai',
+    '/projects/artificial_intelligence/SolveLabyrinth',
+    prefix + '/artificial_intelligence/SolveLabyrinth' + '/0.png',
+    'A.I. solve a labyrinth',
+    'A.I. solve a random labyrinth using recursive algorithms',
+  ),
 ];
 
 const Index = () => {

@@ -4,6 +4,7 @@ export enum EnumProjectTypes {
   machineLearning = 'machineLearning',
   videogames = 'videogame',
   applications = 'applications',
+  ai = 'ai',
 }
 
 const projectTypes: any = {
@@ -20,6 +21,11 @@ const projectTypes: any = {
   applications: {
     colorBadge: 'purple',
     name: 'Applications',
+    bgBox: 'cyan',
+  },
+  ai: {
+    colorBadge: 'green',
+    name: 'A.I.',
     bgBox: 'cyan',
   },
 };

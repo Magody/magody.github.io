@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useColorMode } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
-import Presentation from "../components/profile/Presentation";
-import Profile from "../components/profile/Profile";
+import React, { useState, useEffect } from 'react';
+import { ScaleFade, useColorMode } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
+import Presentation from '../components/profile/Presentation';
+import Profile from '../components/profile/Profile';
 
 /*
 export async function getStaticProps({ locale }: Locale){
@@ -16,13 +16,19 @@ export async function getStaticProps({ locale }: Locale){
 }
 */
 
-
-const Particles = dynamic(() => import("react-particles-js"));
+const Particles = dynamic(() => import('react-particles-js'));
 
 const Index: React.FC<{}> = (props) => {
   const { colorMode } = useColorMode();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const isDark = colorMode === "dark";
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(true);
+    }, 300);
+  }, []);
+
+  const isDark = colorMode === 'dark';
 
   useEffect(() => {}, []);
 
@@ -43,19 +49,19 @@ const Index: React.FC<{}> = (props) => {
               },
             },
             color: {
-              value: "#ffffff",
+              value: '#ffffff',
             },
             shape: {
-              type: "circle",
+              type: 'circle',
               stroke: {
                 width: 0,
-                color: "#000000",
+                color: '#000000',
               },
               polygon: {
                 nb_sides: 5,
               },
               image: {
-                src: "img/github.svg",
+                src: 'img/github.svg',
                 width: 100,
                 height: 100,
               },
@@ -83,17 +89,17 @@ const Index: React.FC<{}> = (props) => {
             line_linked: {
               enable: true,
               distance: 150,
-              color: isDark ? "#ffffff" : "#4aa89f",
+              color: isDark ? '#ffffff' : '#4aa89f',
               opacity: 0.4,
               width: 1,
             },
             move: {
               enable: true,
               speed: 2,
-              direction: "none",
+              direction: 'none',
               random: false,
               straight: false,
-              out_mode: "out",
+              out_mode: 'out',
               bounce: false,
               attract: {
                 enable: false,
@@ -103,15 +109,15 @@ const Index: React.FC<{}> = (props) => {
             },
           },
           interactivity: {
-            detect_on: "canvas",
+            detect_on: 'canvas',
             events: {
               onhover: {
                 enable: true,
-                mode: "grab",
+                mode: 'grab',
               },
               onclick: {
                 enable: true,
-                mode: "push",
+                mode: 'push',
               },
               resize: true,
             },
@@ -143,8 +149,9 @@ const Index: React.FC<{}> = (props) => {
           retina_detect: true,
         }}
       />
-      <Presentation greeting="Hi, i am Danny 🙋‍♂️" />
-
+      <ScaleFade initialScale={0.3} in={isOpen}>
+        <Presentation greeting="Hi, i am Danny 🙋‍♂️" />
+      </ScaleFade>
       <Profile />
     </React.Fragment>
   );
