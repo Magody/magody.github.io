@@ -84,6 +84,14 @@ const projects = [
     'A.I. solve a labyrinth',
     'A.I. solve a random labyrinth using recursive algorithms',
   ),
+
+  new Project(
+    'ai',
+    '/projects/artificial_intelligence/TicTacToe',
+    prefix + '/artificial_intelligence/TicTacToe' + '/0.png',
+    'A.I. plays Tic Tac Toe',
+    'A.I. plays Tic Tac Toe using recursivity to generate tree of diferent results, and choose the best branch to win the game',
+  ),
 ];
 
 const Index = () => {

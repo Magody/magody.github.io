@@ -9,7 +9,7 @@ import {
 } from 'react-icons/di';
 import { FaReact, FaUnity, FaLaravel, FaAngular } from 'react-icons/fa';
 import { GiWolfHead } from 'react-icons/gi';
-import { SiPostgresql, SiSpring, SiTensorflow } from 'react-icons/si';
+import { SiDjango, SiPostgresql, SiSpring, SiTensorflow } from 'react-icons/si';
 import { FcLinux } from 'react-icons/fc';
 
 import useMediaQueryFixed from '../../hooks/use-media-query';
@@ -95,6 +95,13 @@ const technologies = [
     bg_secundary: '#f56614',
     icon: FaAngular,
     text: 'Angular',
+  },
+  {
+    id: 12,
+    bg: '#507a5a',
+    bg_secundary: '#83a38a',
+    icon: SiDjango,
+    text: 'Django',
   },
 ];
 

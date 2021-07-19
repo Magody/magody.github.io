@@ -52,7 +52,7 @@ const SolveLabyrinth: React.FC<{ basePathImageDir: string }> = (props) => {
       </Flex>
 
       <SimpleSection
-        text="Using a matrix we can change the objective point, and the i.a. willy find the correct path. If the point is unreachable then the i.a. after a mini loop stops and decides that is imposible."
+        text="Using a matrix we can change the objective point, and the a.i. willy find the correct path. If the point is unreachable then the a.i. after a mini loop stops and decides that is imposible."
         customCSS={cssFullImage}
         srcImage={prefix + '/0.png'}
       />
