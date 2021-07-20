@@ -19,7 +19,7 @@ const CardProject: React.FC<{
         position="relative"
         m="1rem"
         w={isSmallerScreen ? '100%' : '15rem'}
-        h={isSmallerScreen ? '10rem' : '12rem'}
+        h={isSmallerScreen ? '18rem' : '12rem'}
         _hover={{
           cursor: 'pointer',
         }}

@@ -54,6 +54,13 @@ const projects = [
     'A human learn to avoid collisions with monsters and to collect life',
   ),
   new Project(
+    'ai',
+    '/projects/artificial_intelligence/ExplorerPI',
+    prefix + '/artificial_intelligence/ExplorerPI' + '/0.png',
+    'Robot that can dodge obstacles and detect fire',
+    'ExplorerPI, a robot that can explore the world and detect fire',
+  ),
+  new Project(
     'applications',
     '/projects/applications/GameOfLife',
     prefix + '/applications/GameOfLife' + '/0.png',
@@ -68,13 +75,6 @@ const projects = [
       '/0.png',
     'Genetic algorithms for YOUTUBE recommendations',
     'Recommendation system with genetic algotrithms using Youtube videos',
-  ),
-  new Project(
-    'videogames',
-    '/projects/videogames/Adodot',
-    prefix + '/videogames/Adodot' + '/0.png',
-    'RPG mini videogame',
-    'Videogame prototype where main character can do a lot of magic and stop time',
   ),
 
   new Project(
@@ -91,6 +91,13 @@ const projects = [
     prefix + '/artificial_intelligence/TicTacToe' + '/0.png',
     'A.I. plays Tic Tac Toe',
     'A.I. plays Tic Tac Toe using recursivity to generate tree of diferent results, and choose the best branch to win the game',
+  ),
+  new Project(
+    'videogames',
+    '/projects/videogames/Adodot',
+    prefix + '/videogames/Adodot' + '/0.png',
+    'RPG mini videogame',
+    'Videogame prototype where main character can do a lot of magic and stop time',
   ),
 ];
 
