@@ -30,7 +30,7 @@ export const SimpleCard: React.FC<{
         bg={props.bg}
         justifyContent="center"
         alignItems="center"
-        className="over_particles"
+        className="over_particles animatedY"
         _hover={{
           bg: props.bg_secundary,
         }}

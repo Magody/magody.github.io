@@ -5,17 +5,19 @@ import {
   GridItem,
   Icon,
   IconButton,
+  Image,
   Text,
   Tooltip,
   useColorMode,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import useMediaQueryFixed from '../../hooks/use-media-query';
 import { IoMdConstruct } from 'react-icons/io';
 import { FaProjectDiagram } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import { EnumProjectTypes, Project } from '../../models/Project';
+import $ from 'jquery';
 
 const CardProject = dynamic(
   () => import('../../components/ui/cards/CardProject'),
@@ -99,6 +101,14 @@ const projects = [
     'RPG mini videogame',
     'Videogame prototype where main character can do a lot of magic and stop time',
   ),
+
+  new Project(
+    'ai',
+    '/projects/artificial_intelligence/Rubik3x3',
+    prefix + '/artificial_intelligence/Rubik3x3' + '/0.png',
+    "A.I. solve the rubik's cube",
+    "A.I. solve the rubik's cube, generating distinct posible paths and score them.",
+  ),
 ];
 
 const Index = () => {
@@ -111,6 +121,18 @@ const Index = () => {
   const redirectToOldPortfolio = () => {
     window.open('https://magody.github.io/OldPortfolio/');
   };
+
+  /*
+  useEffect(() => {
+    $('#container_logo').on('hover', function () {
+      $(this).addClass("animated");
+    });
+
+    $('#container_logo').on('hover', function () {
+      $(this).addClass("animated");
+    });
+
+  }, []);*/
 
   return (
     <Flex
@@ -142,22 +164,26 @@ const Index = () => {
         direction="column"
         p="1rem"
       >
-        <Icon as={IoMdConstruct} w="8rem" h="8rem"></Icon>
         <Text>
-          Im refactoring this portflio with NEXT JS, there are a lot o projects
-          that i havent published yet like a chatbot, an inspired game of
-          General Chaos, a IA that can compose by it self, datamart and workflow
-          with pentaho, etc. Whatever, you can still check my old portfolio with
-          college projects, they are interesting ¡so check it out! Of course the
-          best projects of that portfolio i will refactor here in English.
+          There are a lot of projects that i havent published yet like a
+          chatbot, an inspired game of General Chaos, a IA that can compose by
+          it self, datamart and workflow with pentaho, etc. I will put these
+          projects here. Meanwhile you can check out my old portfolio by
+          clicking below in the dragon
         </Text>
         <Tooltip label="My old portfolio" aria-label="A tooltip">
-          <IconButton
-            m={isSmallerScreen ? '1rem' : ''}
-            aria-label="Old portfolio"
-            icon={<FaProjectDiagram />}
-            onClick={redirectToOldPortfolio}
-          ></IconButton>
+          <Box id="container_logo" className="animated">
+            <Image
+              _hover={{
+                cursor: 'pointer',
+              }}
+              onClick={redirectToOldPortfolio}
+              alt="logo_magody"
+              w="15rem"
+              h="15rem"
+              src={'logo_magody.png'}
+            />
+          </Box>
         </Tooltip>
       </Flex>
     </Flex>

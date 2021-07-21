@@ -13,8 +13,8 @@ import {
   transition,
   Tooltip,
   HStack,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+} from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 import {
   FaGithub,
   FaLinkedin,
@@ -22,46 +22,45 @@ import {
   FaSun,
   FaLanguage,
   FaProjectDiagram,
-} from "react-icons/fa";
-import { MenuLanguages } from "./MenuLanguages";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import useMediaQueryFixed from "../../hooks/use-media-query";
+} from 'react-icons/fa';
+import { MenuLanguages } from './MenuLanguages';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import useMediaQueryFixed from '../../hooks/use-media-query';
 
 const MainHeader = () => {
   const { colorMode, setColorMode } = useColorMode();
 
-  const isSmallerScreen = useMediaQueryFixed("(max-width:600px)");
+  const isSmallerScreen = useMediaQueryFixed('(max-width:600px)');
   const router = useRouter();
 
   useEffect(() => {
     // ensure always start with dark
-    if (colorMode == "light") {
-      setColorMode("dark");
+    if (colorMode == 'light') {
+      setColorMode('dark');
     }
-    
   }, []);
 
   const handleToggleColorMode = () => {
-    if (colorMode == "light") {
-      setColorMode("dark");
-    } else if (colorMode == "dark") {
-      setColorMode("light");
+    if (colorMode == 'light') {
+      setColorMode('dark');
+    } else if (colorMode == 'dark') {
+      setColorMode('light');
     }
   };
 
   const redirectToGithub = () => {
-    window.open("https://www.github.com/Magody");
+    window.open('https://www.github.com/Magody');
   };
 
   const redirectToLinkedin = () => {
-    window.open("https://www.linkedin.com/in/magody-pendragon");
+    window.open('https://www.linkedin.com/in/magody-pendragon');
   };
   const redirectToOldPortfolio = () => {
-    window.open("https://magody.github.io/OldPortfolio/");
+    window.open('https://magody.github.io/OldPortfolio/');
   };
 
-  console.log("header", router.asPath);
+  console.log('header', router.asPath);
   /*
   <Heading ml="8" size="md" fontWeight="semibold" color="cyan.400">
         Danny
@@ -91,7 +90,7 @@ const MainHeader = () => {
       <HStack spacing="0.5rem">
         <Box
           className={`nav_button ${
-            router.asPath === "/" ? "nav_button_active" : ""
+            router.asPath === '/' ? 'nav_button_active' : ''
           }`}
           p="0.5rem"
           borderRadius="0.5rem"
@@ -100,42 +99,30 @@ const MainHeader = () => {
         </Box>
         <Box
           className={`nav_button ${
-            router.asPath.includes("/projects") ? "nav_button_active" : ""
+            router.asPath.includes('/projects') ? 'nav_button_active' : ''
           }`}
           p="0.5rem"
           borderRadius="0.5rem"
         >
-        <Link href="/projects">Projects</Link>
+          <Link href="/projects">Projects</Link>
         </Box>
         <Box
           className={`nav_button ${
-            router.asPath === "/About" ? "nav_button_active" : ""
+            router.asPath === '/About' ? 'nav_button_active' : ''
           }`}
           p="0.5rem"
           borderRadius="0.5rem"
         >
-        <Link href="/About">About me</Link>
+          <Link href="/About">About me</Link>
         </Box>
-
       </HStack>
 
-          {
-            isSmallerScreen? "": <Spacer></Spacer>
-          }
-      
+      {isSmallerScreen ? '' : <Spacer></Spacer>}
 
-      <Tooltip label="My old portfolio" aria-label="A tooltip">
-        <IconButton
-          m={isSmallerScreen? "1rem": ""}
-          aria-label="Old portfolio"
-          icon={<FaProjectDiagram />}
-          onClick={redirectToOldPortfolio}
-        ></IconButton>
-      </Tooltip>
       <Tooltip label="My Linkedin" aria-label="A tooltip">
         <IconButton
-          m={isSmallerScreen? "1rem": ""}
-          ml={isSmallerScreen? "": "1rem"}
+          m={isSmallerScreen ? '1rem' : ''}
+          ml={isSmallerScreen ? '' : '1rem'}
           aria-label="Linkedin"
           icon={<FaLinkedin />}
           onClick={redirectToLinkedin}
@@ -146,11 +133,11 @@ const MainHeader = () => {
         aria-label="A tooltip"
       >
         <IconButton
-          m={isSmallerScreen? "1rem": ""}
-          ml={isSmallerScreen? "": "1rem"}
+          m={isSmallerScreen ? '1rem' : ''}
+          ml={isSmallerScreen ? '' : '1rem'}
           onClick={handleToggleColorMode}
           aria-label="Toggle dark mode"
-          icon={colorMode == "dark" ? <FaSun /> : <FaMoon />}
+          icon={colorMode == 'dark' ? <FaSun /> : <FaMoon />}
         ></IconButton>
       </Tooltip>
     </Flex>
