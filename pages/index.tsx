@@ -42,10 +42,10 @@ const Index: React.FC<{}> = (props) => {
         params={{
           particles: {
             number: {
-              value: 80,
+              value: 40,
               density: {
                 enable: true,
-                value_area: 800,
+                value_area: 600,
               },
             },
             color: {
@@ -89,9 +89,9 @@ const Index: React.FC<{}> = (props) => {
             line_linked: {
               enable: true,
               distance: 150,
-              color: isDark ? '#ffffff' : '#4aa89f',
-              opacity: 0.4,
-              width: 1,
+              color: isDark ? '#ffffff' : '#5a5096',
+              opacity: 0.6,
+              width: isDark ? 1 : 3,
             },
             move: {
               enable: true,
