@@ -18,10 +18,7 @@ import { FaProjectDiagram } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import { EnumProjectTypes, Project } from '../../models/Project';
 import $ from 'jquery';
-
-const CardProject = dynamic(
-  () => import('../../components/ui/cards/CardProject'),
-);
+import CardProject from '../../components/ui/cards/CardProject';
 
 const prefix = (process.env.NEXT_PUBLIC_BASE_PATH || '') + '/images/projects';
 
@@ -40,13 +37,6 @@ const projects = [
     prefix + '/videogames/EthicalOwl' + '/mr robot.jpg',
     'Operative system simulation for a hacking game in C',
     'Game inspired on hacking, we created a mini OS with various functions',
-  ),
-  new Project(
-    'machineLearning',
-    '/projects/machine_learning/RecommendationSystemMatrix',
-    prefix + '/machine_learning/RecommendationSystemMatrix' + '/0.png',
-    'C.F. Recommendation System for a electronic store',
-    'Collaborative filtering with tensorflow',
   ),
   new Project(
     'machineLearning',
@@ -108,6 +98,20 @@ const projects = [
     prefix + '/artificial_intelligence/Rubik3x3' + '/0.png',
     "A.I. solve the rubik's cube",
     "A.I. solve the rubik's cube, generating distinct posible paths and score them.",
+  ),
+  new Project(
+    'machineLearning',
+    '/projects/machine_learning/RecommendationSystemMatrix',
+    prefix + '/machine_learning/RecommendationSystemMatrix' + '/0.png',
+    'C.F. Recommendation System for a electronic store',
+    'Collaborative filtering with tensorflow',
+  ),
+  new Project(
+    'ai',
+    '/projects/artificial_intelligence/Puzzle8',
+    prefix + '/artificial_intelligence/Puzzle8' + '/0.png',
+    'A.I. solve the 8-Puzzle',
+    'A.I. solve the 8-Puzzle using Backtracking and greedy algorithms',
   ),
 ];
 
