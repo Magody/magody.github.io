@@ -1,27 +1,26 @@
-import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
-import { timers } from "jquery";
-import React, { useState, useEffect, useRef } from "react";
+import { Box, Flex, Text, useColorMode } from '@chakra-ui/react';
+import { timers } from 'jquery';
+import React, { useState, useEffect, useRef } from 'react';
 
-import useMediaQueryFixed from "../hooks/use-media-query";
-import $ from "jquery";
+import useMediaQueryFixed from '../hooks/use-media-query';
+import $ from 'jquery';
 
 import dynamic from 'next/dynamic';
+import { SimpleSection } from '../components/projects/SimpleSection';
 
-const Galaxy = dynamic(
-  () => import("../components/3D/Galaxy")
-)
+const Galaxy = dynamic(() => import('../components/3D/Galaxy'));
 
 const phrases = [
   {
-    text: "Can a machine do something with all its heart?",
+    text: 'Can a machine do something with all its heart?',
     wait: 4000,
   },
   {
-    text: "No, a bunch of electric sparks in their head would be incapable of doing that.",
+    text: 'No, a bunch of electric sparks in their head would be incapable of doing that.',
     wait: 6000,
   },
   {
-    text: "A machine just follows a purpose blindly.",
+    text: 'A machine just follows a purpose blindly.',
     wait: 5000,
   },
   {
@@ -29,11 +28,11 @@ const phrases = [
     wait: 4000,
   },
   {
-    text: "What does it mean to do something with all our heart?",
+    text: 'What does it mean to do something with all our heart?',
     wait: 6000,
   },
   {
-    text: "",
+    text: '',
     wait: 0,
   },
 ];
@@ -42,31 +41,33 @@ const sleep = (milliseconds: number) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
-const prefix = "";
-const filename = prefix + "/audio/i_am_ia.mp3";
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+const filename = prefix + '/audio/i_am_ia.mp3';
 
 const About: React.FC<{ audio: any }> = (props) => {
   const { colorMode } = useColorMode();
   const [indexPresentation, setIndexPresentation] = useState({
     index: 0,
-    text: "",
+    text: '',
   });
   const musicPlayers = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio(filename) : undefined
+    typeof Audio !== 'undefined' ? new Audio(filename) : undefined,
   );
 
-  const isSmallerScreen = useMediaQueryFixed("(max-width: 600px)");
+  const isSmallerScreen = useMediaQueryFixed('(max-width: 600px)');
 
-  const isDark = colorMode === "dark";
+  const isDark = colorMode === 'dark';
 
   useEffect(() => {
-    $("#box").show();
-    $("#final_texts").hide();
-    var viewportOffset = $("#flex_vh")[0].getBoundingClientRect();
+    $('#box').show();
+    $('#second').hide();
+    $('#final_texts').hide();
+    var viewportOffset = $('#flex_vh')[0].getBoundingClientRect();
     // these are relative to the viewport, i.e. the window
     var top = viewportOffset.top;
 
-      $("#flex_vh").css("height", window.innerHeight-top-5);
+    $('#flex_vh').css('height', window.innerHeight - top - 5);
     const showMessage = async () => {
       for (let index = 0; index < phrases.length; index++) {
         const element = phrases[index];
@@ -76,31 +77,36 @@ const About: React.FC<{ audio: any }> = (props) => {
         });
         await sleep(element.wait);
       }
-      $("#box").hide();
-      $("#final_texts").show();
-      const height = window.innerHeight/ 2;
+      $('#box').hide();
+      $('#final_texts').show();
+      $('#second').show();
 
-      $("#flex_vh").css("height", height);
-      
+      const height = window.innerHeight / 2;
+
+      $('#flex_vh').css('height', height);
     };
     musicPlayers.current
       ?.play()
       .then(() => {
-        console.log("played");
+        console.log('played');
         if (musicPlayers.current instanceof HTMLAudioElement) {
           musicPlayers.current.volume = 0.25;
         } else {
-          console.log("No instance", typeof musicPlayers.current);
+          console.log('No instance', typeof musicPlayers.current);
         }
       })
       .catch(() => {
-        console.log("User not interacted with website");
+        console.log('User not interacted with website');
       });
 
     showMessage();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const cssFullImage = {
+    maxWidth: '100%',
+  };
 
   return (
     <React.Fragment>
@@ -121,25 +127,25 @@ const About: React.FC<{ audio: any }> = (props) => {
           justifyContent="center"
           alignItems="center"
         >
-          <Text textAlign="center" fontSize={isSmallerScreen ? "3xl" : "6xl"}>
+          <Text textAlign="center" fontSize={isSmallerScreen ? '3xl' : '6xl'}>
             {indexPresentation.text}
           </Text>
         </Flex>
 
-        {indexPresentation.index >= phrases.length-1 && <Galaxy />}
+        {indexPresentation.index >= phrases.length - 1 && <Galaxy />}
       </Flex>
       <Flex
         id="final_texts"
-        m={isSmallerScreen ? "0rem" : "2rem"}
+        m={isSmallerScreen ? '0rem' : '2rem'}
         mt="3rem"
-        direction={isSmallerScreen ? "column" : "row"}
+        direction={isSmallerScreen ? 'column' : 'row'}
         justifyContent="center"
         alignItems="center"
       >
         <Text
           textAlign="center"
           fontSize="1.2rem"
-          mt={isSmallerScreen ? "1rem" : "0rem"}
+          mt={isSmallerScreen ? '1rem' : '0rem'}
           p="1rem"
         >
           Since the first time I wrote hello world I have wondered, what is it
@@ -152,7 +158,7 @@ const About: React.FC<{ audio: any }> = (props) => {
           textAlign="center"
           fontSize="1.2rem"
           p="1rem"
-          mt={isSmallerScreen ? "1rem" : "0rem"}
+          mt={isSmallerScreen ? '1rem' : '0rem'}
         >
           The background music in this section, if you were one of the lucky
           ones to hear it, was written by an AI. It is nothing more than
@@ -161,6 +167,13 @@ const About: React.FC<{ audio: any }> = (props) => {
           composite mathematical functions.
         </Text>
       </Flex>
+      <Box id="second">
+        <SimpleSection
+          text="I've participated in few programming contest. Many of them have taught me that there is always room for improvement, whenever I think I have reached the peak of my career, someone else more talented than me makes me realize that I still have a long way to go..."
+          customCSS={cssFullImage}
+          srcImage={prefix + '/images/second.jpg'}
+        />
+      </Box>
     </React.Fragment>
   );
 };
