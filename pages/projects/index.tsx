@@ -167,8 +167,13 @@ const Index = () => {
   };
 
   return (
-    <>
-      <Flex direction="row" flexWrap="wrap">
+    <Box pt="2rem">
+      <Flex
+        direction="row"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Button
           className={
             filter === 'all' ? 'filter_selected' : 'filter_no_selected'
@@ -247,7 +252,7 @@ const Index = () => {
           </Tooltip>
         </Flex>
       </Flex>
-    </>
+    </Box>
   );
 };
 
