@@ -94,6 +94,24 @@ a {
   }
 }
 
+.filter_selected {
+  background-color: rgb(172, 114, 206) !important;
+  border: 1px solid pink !important;
+  transition: 0.5s !important;
+  margin: 0.3rem !important;
+}
+
+.filter_no_selected {
+  background-color: rgb(91, 44, 135) !important;
+  transition: 0.5s !important;
+  margin: 0.3rem !important;
+}
+
+.filter_no_selected:hover {
+  background-color: rgb(172, 114, 206) !important;
+  transition: 0.2s !important;
+}
+
 @keyframes animateY {
   0% {
     transform: perspective(1000px) rotateY(0deg);

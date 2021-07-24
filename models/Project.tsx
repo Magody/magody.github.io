@@ -1,32 +1,36 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export enum EnumProjectTypes {
-  machineLearning = 'machineLearning',
-  videogames = 'videogame',
-  applications = 'applications',
-  ai = 'ai',
+  machineLearning = 'MachineLearning',
+  videogames = 'Videogames',
+  applications = 'Applications',
+  ai = 'AI',
 }
 
 const projectTypes: any = {
-  machineLearning: {
+  MachineLearning: {
     colorBadge: 'rgb(14, 151, 133)',
     name: 'Machine Learning',
-    bgBox: 'cyan',
+    bgBox: 'black',
+    enumValue: 'MachineLearning',
   },
-  videogames: {
+  Videogames: {
     colorBadge: 'rgb(157, 112, 30)',
     name: 'Videogames',
-    bgBox: 'cyan',
+    bgBox: 'black',
+    enumValue: 'Videogames',
   },
-  applications: {
+  Applications: {
     colorBadge: 'purple',
     name: 'Applications',
-    bgBox: 'cyan',
+    bgBox: 'black',
+    enumValue: 'Applications',
   },
-  ai: {
+  AI: {
     colorBadge: 'green',
     name: 'A.I.',
-    bgBox: 'cyan',
+    bgBox: 'black',
+    enumValue: 'AI',
   },
 };
 
@@ -45,12 +49,13 @@ export class Project {
     title: string,
     tooltip: string,
   ) {
+    console.log(type);
     this.id = uuidv4();
     this.type = projectTypes[type];
     this.destination = destination;
     this.srcImage = srcImage;
     this.title = title;
     this.tooltip = tooltip;
-    console.log(type, this.type);
+    // console.log(type, this.type);
   }
 }
