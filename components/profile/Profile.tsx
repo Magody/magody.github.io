@@ -118,7 +118,7 @@ function Profile() {
     <Flex direction={isSmallerScreen ? 'column' : 'row'} w="100%">
       <Box alignSelf="center" px="8" py="8" borderColor="blue" border="1px">
         <Heading fontWeight="extrabold" color="cyan.500" size="4xl">
-          2+
+          3+
         </Heading>
         <Text fontSize="2xl" color="gray.400">
           Years of experience
@@ -138,7 +138,7 @@ function Profile() {
           fontSize={isSmallerScreen ? 'xl' : '2xl'}
           textAlign="center"
         >
-          I know the following technologies:
+          I know mainly the following technologies:
         </Text>
         <Flex
           alignSelf="center"

@@ -121,6 +121,13 @@ const projects = [
     'A.I. solve the 8-Puzzle',
     'A.I. solve the 8-Puzzle using Backtracking and greedy algorithms',
   ),
+  new Project(
+    EnumProjectTypes.dataScience,
+    '/projects/data_science/EDA_KenJee',
+    prefix + '/data_science/EDA_KenJee' + '/2.png',
+    'Sentimental analysis, EDA and clustering',
+    'Data science for youtuber Ken Jee in order to improve the CTR and subscription ratio',
+  ),
 ];
 
 const projectTypes = [
@@ -128,6 +135,7 @@ const projectTypes = [
   EnumProjectTypes.applications,
   EnumProjectTypes.machineLearning,
   EnumProjectTypes.videogames,
+  EnumProjectTypes.dataScience
 ];
 
 const Index = () => {
