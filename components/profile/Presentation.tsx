@@ -88,9 +88,6 @@ const Presentation: React.FC<{ greeting: string }> = (props) => {
                   text="Hi, Danny. Whats going on?"
                 ></ButtonWhatsapp>
               </Box>
-              <Box m="1rem">
-                <ButtonTelegram username="magody_pendragon"></ButtonTelegram>
-              </Box>
             </Flex>
           </Fade>
         </Box>

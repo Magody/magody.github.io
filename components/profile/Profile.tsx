@@ -48,20 +48,6 @@ const technologies = [
     text: 'Videogames',
   },
   {
-    id: 5,
-    bg: '#de9c18',
-    bg_secundary: '#f0ddb9',
-    icon: FaLaravel,
-    text: 'Laravel',
-  },
-  {
-    id: 6,
-    bg: '#00c77e',
-    bg_secundary: '#82edc6',
-    icon: SiSpring,
-    text: 'Spring Boot',
-  },
-  {
     id: 7,
     bg: '#a1b8ed',
     bg_secundary: '#bac7e6',
@@ -88,13 +74,6 @@ const technologies = [
     bg_secundary: '#e9f296',
     icon: SiTensorflow,
     text: 'Machine Learning',
-  },
-  {
-    id: 11,
-    bg: '#ed864a',
-    bg_secundary: '#f56614',
-    icon: FaAngular,
-    text: 'Angular',
   },
   {
     id: 12,
