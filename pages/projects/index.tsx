@@ -31,6 +31,22 @@ const projects = [
     'Android Gesture Recognition',
     'Neural Network using signals',
   ),
+  new Project(
+    EnumProjectTypes.dataScience,
+    '/projects/data_science/EDA_KenJee',
+    prefix + '/data_science/EDA_KenJee' + '/2.png',
+    'Sentimental analysis, EDA and clustering',
+    'Data science for youtuber Ken Jee in order to improve the CTR and subscription ratio',
+  ),
+  new Project(
+    EnumProjectTypes.webScrapping,
+    '/projects/web_scrapping/anime_flv_scrapper',
+
+
+    prefix + '/web_scrapping/anime_flv_scrapper' + '/0.png',
+    'Web Scrapping (undetected), ETL and analysis',
+    'Web Scrapping with Selenium against bot detection in AnimeFLV. I perform a little analysis sliding the data collected',
+  ),
 
   new Project(
     EnumProjectTypes.videogames,
@@ -121,13 +137,7 @@ const projects = [
     'A.I. solve the 8-Puzzle',
     'A.I. solve the 8-Puzzle using Backtracking and greedy algorithms',
   ),
-  new Project(
-    EnumProjectTypes.dataScience,
-    '/projects/data_science/EDA_KenJee',
-    prefix + '/data_science/EDA_KenJee' + '/2.png',
-    'Sentimental analysis, EDA and clustering',
-    'Data science for youtuber Ken Jee in order to improve the CTR and subscription ratio',
-  ),
+  
 ];
 
 const projectTypes = [
@@ -135,7 +145,8 @@ const projectTypes = [
   EnumProjectTypes.applications,
   EnumProjectTypes.machineLearning,
   EnumProjectTypes.videogames,
-  EnumProjectTypes.dataScience
+  EnumProjectTypes.dataScience,
+  EnumProjectTypes.webScrapping
 ];
 
 const Index = () => {

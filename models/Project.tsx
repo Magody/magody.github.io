@@ -6,6 +6,7 @@ export enum EnumProjectTypes {
   applications = 'Applications',
   ai = 'AI',
   dataScience = 'DataScience',
+  webScrapping = 'WebScrapping',
 }
 
 const projectTypes: any = {
@@ -38,6 +39,12 @@ const projectTypes: any = {
     name: 'Data Science',
     bgBox: 'black',
     enumValue: 'DataScience',
+  },
+  WebScrapping: {
+    colorBadge: 'blue',
+    name: 'Web Scrapping',
+    bgBox: 'black',
+    enumValue: 'WebScrapping',
   },
 };
 
