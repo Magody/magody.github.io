@@ -20,6 +20,22 @@ const AndroidGestureRecognition: React.FC<{ basePathImageDir: string }> = (
     w: '15rem',
     h: '15rem',
   };
+  /*
+  <Flex w="100%" h="30rem">
+        <iframe
+          src="https://player.vimeo.com/video/576194386?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          title="Android gesture recognition"
+        ></iframe>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </Flex>
+  */
   return (
     <Flex
       direction="column"
@@ -40,20 +56,7 @@ const AndroidGestureRecognition: React.FC<{ basePathImageDir: string }> = (
         srcImage={prefix + '/0.png'}
       />
 
-      <Flex w="100%" h="30rem">
-        <iframe
-          src="https://player.vimeo.com/video/576194386?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
-          title="Android gesture recognition"
-        ></iframe>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-      </Flex>
+      
 
       <SimpleSection
         text="Through the movement of the hand with the cell phone, the sensors collect data, and this data will be used to train a neural network.

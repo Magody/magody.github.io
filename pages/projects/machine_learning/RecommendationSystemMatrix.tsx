@@ -19,6 +19,23 @@ const RecommendationSystemMatrix = () => {
     h: '15rem',
   };
 
+  /*
+  <Flex w="100%" h="30rem">
+        <iframe
+          src="https://player.vimeo.com/video/576192499?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          title="Android gesture recognition"
+        ></iframe>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </Flex>
+  */
+
   return (
     <Flex
       direction="column"
@@ -37,20 +54,7 @@ const RecommendationSystemMatrix = () => {
         srcImage={prefix + '/0.png'}
       />
 
-      <Flex w="100%" h="30rem">
-        <iframe
-          src="https://player.vimeo.com/video/576192499?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
-          title="Android gesture recognition"
-        ></iframe>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-      </Flex>
+      
 
       <SimpleSection
         text="A diagram of the steps to be followed to recommend a product was designed. We start with a large number of products and filter them little by little: possible candidates are generated with matrix factorization and then similarities between the products are calculated to then take the top 10 products with the best score."
