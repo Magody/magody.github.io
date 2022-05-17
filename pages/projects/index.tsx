@@ -25,6 +25,13 @@ const prefix = (process.env.NEXT_PUBLIC_BASE_PATH || '') + '/images/projects';
 
 const projects = [
   new Project(
+    EnumProjectTypes.nlp,
+    '/projects/nlp/BrainChatbotRetrieval',
+    prefix + '/nlp/BrainChatbotRetrieval' + '/0.png',
+    'Chatbot Online with TF',
+    'Chatbot made with Neural Networks and SERVER LESS!',
+  ),
+  new Project(
     EnumProjectTypes.machineLearning,
     '/projects/machine_learning/AndroidGestureRecognition',
     prefix + '/machine_learning/AndroidGestureRecognition' + '/0.png',
@@ -146,7 +153,9 @@ const projectTypes = [
   EnumProjectTypes.machineLearning,
   EnumProjectTypes.videogames,
   EnumProjectTypes.dataScience,
-  EnumProjectTypes.webScrapping
+  EnumProjectTypes.webScrapping,
+  EnumProjectTypes.nlp,
+  EnumProjectTypes.computerVision,
 ];
 
 const Index = () => {
@@ -242,34 +251,7 @@ const Index = () => {
           );
         })}
 
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          direction="column"
-          p="1rem"
-        >
-          <Text>
-            There are a lot of projects that i havent published yet like a
-            chatbot, an inspired game of General Chaos, a IA that can compose by
-            it self, datamart and workflow with pentaho, etc. I will put these
-            projects here. Meanwhile you can check out my old portfolio by
-            clicking below in the dragon
-          </Text>
-          <Tooltip label="My old portfolio" aria-label="A tooltip">
-            <Box id="container_logo" className="animated">
-              <Image
-                _hover={{
-                  cursor: 'pointer',
-                }}
-                onClick={redirectToOldPortfolio}
-                alt="logo_magody"
-                w="15rem"
-                h="15rem"
-                src={'logo_magody.png'}
-              />
-            </Box>
-          </Tooltip>
-        </Flex>
+        
       </Flex>
     </Box>
   );

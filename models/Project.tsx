@@ -7,6 +7,8 @@ export enum EnumProjectTypes {
   ai = 'AI',
   dataScience = 'DataScience',
   webScrapping = 'WebScrapping',
+  nlp = 'NLP',
+  computerVision = 'ComputerVision',
 }
 
 const projectTypes: any = {
@@ -45,6 +47,18 @@ const projectTypes: any = {
     name: 'Web Scrapping',
     bgBox: 'black',
     enumValue: 'WebScrapping',
+  },
+  NLP: {
+    colorBadge: '#613d69',
+    name: 'NLP',
+    bgBox: 'black',
+    enumValue: 'NLP',
+  },
+  ComputerVision: {
+    colorBadge: 'red',
+    name: 'Computer Vision',
+    bgBox: 'black',
+    enumValue: 'ComputerVision',
   },
 };
 

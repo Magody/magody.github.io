@@ -34,7 +34,7 @@ const CardProject: React.FC<{
         <Tooltip label={props.tooltip}>
           <Image
             w="100%"
-            height="100%"
+            h={"100%"}
             alt=""
             backgroundColor="transparent"
             boxShadow="lg"
