@@ -11,7 +11,6 @@ import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { SimpleSection } from '../../../components/projects/SimpleSection';
 
 let modelLinear: tf.Sequential;
-let modelDigits: tf.LayersModel;
 
 const trainNewModel = async () => {
   modelLinear = tf.sequential();
@@ -40,11 +39,11 @@ const prefix =
   '/images/projects/machine_learning/DigitsRecognition';
 
 const loadModelMnistDigits = async () => {
-  modelDigits = await tf.loadLayersModel(prefix + '/model.json');
+  return await tf.loadLayersModel(prefix + '/model.json');
   // console.log('loaded', modelDigits);
 };
 
-const modelDigitsPredict = (imageData: ImageData): number[] => {
+const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => {
   let predictions: number[] = [];
   tf.tidy(() => {
     // Convert the canvas pixels to a Tensor of the matching shape
@@ -74,21 +73,26 @@ const DigitsRecognition: NextPage = () => {
 
   const [drawer, set_drawer] = useState<any>(null);
 
+  const [modelsDigits, set_modelsDigits] = useState<any>(null);
+
   useEffect(() => {
     trainNewModel();
     setPrediction(modelPredict(2));
-    loadModelMnistDigits();
+    set_modelsDigits(loadModelMnistDigits());
 
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, []);
 
+  const valid = () => {
+    return drawer != null && modelsDigits != null;
+  }
   const mouseUp = () => {
-    if (drawer == null) return;
+    if (!valid()) return;
     drawer.pos.x = -1;
     drawer.pos.y = -1;
     const image = drawer.getImageData();
-    setPredictions(modelDigitsPredict(image));
+    setPredictions(modelDigitsPredict(modelsDigits,image));
   };
 
   const touchUp = () => {
@@ -109,7 +113,7 @@ const DigitsRecognition: NextPage = () => {
   };
 
   const mouseMove = (event: any) => {
-    if (drawer == null) return;
+    if (!valid()) return;
 
     if (event.buttons !== 1) {
       return;
@@ -119,14 +123,14 @@ const DigitsRecognition: NextPage = () => {
   };
 
   const canvasClear = () => {
-    if (drawer == null) return;
+    if (!valid()) return;
     drawer.clear();
   };
 
   let canvasWidth = '200px';
   let canvasHeight = '200px';
 
-  let componentPrediction = <div></div>;
+  let componentPrediction = <div>{(!valid())? "LOADING MODEL...":""}</div>;
   if (predictions.length > 0) {
     let messages = [
       'ZERO',
@@ -205,7 +209,9 @@ const DigitsRecognition: NextPage = () => {
         for better results
       </Text>
 
-      <div
+{
+  modelsDigits != null && (
+    <div
         style={{
           backgroundColor: 'white',
           border: '1px solid black',
@@ -225,6 +231,9 @@ const DigitsRecognition: NextPage = () => {
           onTouchMove={touchMove}
         ></canvas>
       </div>
+  )
+}
+      
 
       <Button
         margin="1rem"
