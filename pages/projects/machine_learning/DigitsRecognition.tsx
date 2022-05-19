@@ -85,20 +85,27 @@ const DigitsRecognition: NextPage = () => {
       let img = tf.browser.fromPixels(imageData, 1);
       set_prediction_text('Beginning transformation to 28x28');
       img = img.reshape([1, 28, 28, 1]);
+      set_prediction_text('Transformed to 28x28');
       img = tf.cast(img, 'float32');
+      set_prediction_text('Transformed to float32. Passing image to model...');
 
       console.log('IMAGE', img);
       // console.log(modelDigits.predict)
 
       // Make and format the predications
       const output = modelsDigits.predict(img) as any;
+      set_prediction_text('Predicted...');
+
 
       // console.log(output)
       // Save predictions on the component
       p = Array.from(output.dataSync());
       p = p.map((x) => Math.round(x * 100));
+      set_prediction_text('Mapping probabilities...');
       // console.log(p);
     });
+
+    set_prediction_text('Process finished...');
     return p;
   };
 
