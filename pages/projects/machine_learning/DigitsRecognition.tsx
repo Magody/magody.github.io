@@ -38,13 +38,12 @@ const prefix =
   (process.env.NEXT_PUBLIC_BASE_PATH || '') +
   '/images/projects/machine_learning/DigitsRecognition';
 
-
-
-
 const DigitsRecognition: NextPage = () => {
   const [prediction, setPrediction] = useState(0);
   const [predictions, setPredictions] = useState<number[]>([]);
-  const [prediction_text, set_prediction_text] = useState<string>("Loading the model can take 5 to 30sec...");
+  const [prediction_text, set_prediction_text] = useState<string>(
+    'Loading the model can take 5 to 30sec...',
+  );
 
   const [drawer, set_drawer] = useState<any>(null);
 
@@ -60,64 +59,62 @@ const DigitsRecognition: NextPage = () => {
     };
 
     loadModelMnistDigits()
-      .then((md:any)=>{
-        console.log("LOADED", md)
-        set_prediction_text("")
+      .then((md: any) => {
+        console.log('LOADED', md);
+        set_prediction_text('Ready to predict');
         set_modelsDigits(md);
       })
-      .catch((error:any)=>{
-        set_prediction_text("ERROR LOADING MNIST"  + error)
-      })
-    
+      .catch((error: any) => {
+        console.log('ERROR', error);
+        set_prediction_text('ERROR LOADING MNIST' + error);
+      });
   }, []);
 
-
-
   useEffect(() => {
-    if(modelsDigits == null) return;
+    if (modelsDigits == null) return;
 
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, [modelsDigits]);
 
+  const modelDigitsPredict = (imageData: ImageData) => {
+    let p: number[] = [];
+    // console.log("MODEL", modelDigits)
+    tf.tidy(() => {
+      // Convert the canvas pixels to a Tensor of the matching shape
+      let img = tf.browser.fromPixels(imageData, 1);
+      img = img.reshape([1, 28, 28, 1]);
+      img = tf.cast(img, 'float32');
 
-const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => {
-  // console.log("MODEL", modelDigits)
-  let predictions: number[] = [];
-  tf.tidy(() => {
-    // Convert the canvas pixels to a Tensor of the matching shape
-    set_prediction_text("Transforming the image to 28x28")
-    let img = tf.browser.fromPixels(imageData, 1);
-    img = img.reshape([1, 28, 28, 1]);
-    img = tf.cast(img, 'float32');
+      console.log('IMAGE', img);
+      // console.log(modelDigits.predict)
 
-    console.log(img);
-    // console.log(modelDigits.predict)
+      // Make and format the predications
+      const output = modelsDigits.predict(img) as any;
 
-    // Make and format the predications
-    const output = modelDigits.predict(img) as any;
-    set_prediction_text("Prediction completed")
-
-    // console.log(output)
-    // Save predictions on the component
-    predictions = Array.from(output.dataSync());
-    console.log(predictions);
-    predictions = predictions.map((x) => Math.round(x * 100));
-  });
-
-  return predictions;
-};
+      // console.log(output)
+      // Save predictions on the component
+      p = Array.from(output.dataSync());
+      p = p.map((x) => Math.round(x * 100));
+      // console.log(p);
+    });
+    return p;
+  };
 
   const valid = () => {
     return drawer != null && modelsDigits != null;
-  }
+  };
   const mouseUp = () => {
     if (!valid()) return;
     drawer.pos.x = -1;
     drawer.pos.y = -1;
     const image = drawer.getImageData();
-    set_prediction_text("Sending image to predictor...")
-    setPredictions(modelDigitsPredict(modelsDigits,image));
+    // set_prediction_text('Sending image to predictor...');
+    // set_prediction_text('Transforming the image to 28x28');
+    // set_prediction_text('Prediction completed');
+    let p: any = modelDigitsPredict(image);
+    console.log('PREDICTION');
+    setPredictions(p);
   };
 
   const touchUp = () => {
@@ -155,7 +152,9 @@ const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => 
   let canvasWidth = '200px';
   let canvasHeight = '200px';
 
-  if (predictions.length > 0) {
+  useEffect(() => {
+    if (predictions.length == 0) return;
+    console.log('PRED > 0');
     let messages = [
       'ZERO',
       'ONE',
@@ -188,10 +187,9 @@ const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => 
       extraInfo += `And ${messages[lastMaxIndex]} with less probability.`;
     }
 
-    set_prediction_text(`Your number is: ${messages[maxIndex]} with high probabilty. ${extraInfo}`)
-
-  }
-
+    const pt = `Your number is: ${messages[maxIndex]} with high probabilty. ${extraInfo}`;
+    set_prediction_text(pt);
+  }, [predictions]);
 
   const cssFullImage = {
     maxWidth: '100%',
@@ -226,32 +224,29 @@ const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => 
         for better results
       </Text>
 
-{
-  modelsDigits != null && (
-    <div
-        style={{
-          backgroundColor: 'white',
-          border: '1px solid black',
-          width: canvasWidth,
-          height: canvasHeight,
-          touchAction: "none"
-        }}
-      >
-        <canvas
-          id="draw"
+      {modelsDigits != null && (
+        <div
           style={{
+            backgroundColor: 'white',
+            border: '1px solid black',
             width: canvasWidth,
             height: canvasHeight,
+            touchAction: 'none',
           }}
-          width={canvasWidth}
-          height={canvasHeight}
-          onMouseMove={mouseMove}
-          onTouchMove={touchMove}
-        ></canvas>
-      </div>
-  )
-}
-      
+        >
+          <canvas
+            id="draw"
+            style={{
+              width: canvasWidth,
+              height: canvasHeight,
+            }}
+            width={canvasWidth}
+            height={canvasHeight}
+            onMouseMove={mouseMove}
+            onTouchMove={touchMove}
+          ></canvas>
+        </div>
+      )}
 
       <Button
         margin="1rem"
@@ -265,10 +260,12 @@ const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => 
       <div
         style={{
           textAlign: 'center',
-          color: "yellow",
-          fontSize: "2rem"
+          color: 'yellow',
+          fontSize: '2rem',
         }}
-      >{prediction_text}</div>
+      >
+        {prediction_text}
+      </div>
       <br></br>
 
       <Text align={'center'} fontSize={'1rem'}>
@@ -301,9 +298,6 @@ const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => 
         customCSS={cssFullImage}
         srcImage={prefix + '/1.png'}
       />
-
-
-
     </Flex>
   );
 };
