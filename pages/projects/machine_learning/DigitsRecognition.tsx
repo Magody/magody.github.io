@@ -83,6 +83,7 @@ const DigitsRecognition: NextPage = () => {
     tf.tidy(() => {
       // Convert the canvas pixels to a Tensor of the matching shape
       let img = tf.browser.fromPixels(imageData, 1);
+      set_prediction_text('Beginning transformation to 28x28');
       img = img.reshape([1, 28, 28, 1]);
       img = tf.cast(img, 'float32');
 
@@ -109,10 +110,9 @@ const DigitsRecognition: NextPage = () => {
     drawer.pos.x = -1;
     drawer.pos.y = -1;
     const image = drawer.getImageData();
-    // set_prediction_text('Sending image to predictor...');
-    // set_prediction_text('Transforming the image to 28x28');
-    // set_prediction_text('Prediction completed');
+    set_prediction_text('Sending image to predictor...');
     let p: any = modelDigitsPredict(image);
+    set_prediction_text('Prediction completed');
     console.log('PREDICTION');
     setPredictions(p);
   };
