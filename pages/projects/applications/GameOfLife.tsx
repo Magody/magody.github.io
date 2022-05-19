@@ -43,24 +43,9 @@ const GameOfLife = () => {
         duration,
       );
 
-      // callback
-      const mouseUp = () => {
-        document.removeEventListener('mousemove', dibujarMouse);
-      };
+      
 
-      // callback
-      const dibujarMouse = (event: any) => {
-        drawer.tryToDrawCell(event.layerX, event.layerY);
-      };
-
-      // callback
-      const mouseDown = (event: any) => {
-        const wasValidClick = drawer.tryToDrawCell(event.layerX, event.layerY);
-
-        if (wasValidClick) {
-          document.addEventListener('mousemove', dibujarMouse);
-        }
-      };
+      
 
       document.addEventListener('mousedown', mouseDown);
       document.addEventListener('mouseup', mouseUp);
@@ -85,6 +70,33 @@ const GameOfLife = () => {
 
     drawer?.beginSimulation(refGenerationFeedback.current);
   };
+  // callback
+  const mouseDown = (event: any) => {
+    const wasValidClick = drawer.tryToDrawCell(event.layerX, event.layerY);
+
+    if (wasValidClick) {
+      document.addEventListener('mousemove', dibujarMouse);
+    }
+  };
+  // callback
+  const mouseUp = () => {
+    document.removeEventListener('mousemove', dibujarMouse);
+  };
+
+  // callback
+  const dibujarMouse = (event: any) => {
+
+    let canvasX = drawer.canvas.offsetLeft;
+    let canvasY = drawer.canvas.offsetTop;
+
+    console.log("MOUSE", event.pageY - canvasY, event.layerY)
+    drawer.tryToDrawCell(event.layerX, event.layerY);
+  };
+
+  const touchStart = (event:any) => {
+    var touch = event.touches[0];
+    console.log("Touch", touch, event)
+  }
 
   const handlerCleanUp = () => {
     drawer?.cleanSpace();
@@ -110,7 +122,7 @@ const GameOfLife = () => {
 
       <Text>
         Click on the black space to enlarge cells to your liking, you can hold
-        down to add them faster. You can do this at at any time, even when the
+        down (if you are using a mouse) to add them faster. You can do this at at any time, even when the
         run is started.
       </Text>
 
@@ -118,8 +130,13 @@ const GameOfLife = () => {
         Set the number of generations and the duration of each with the sliders
         below. Click Start when you are ready!
       </Text>
-      <canvas width="100vw" height="80vh" id="dibujito"></canvas>
-
+      <div style={{
+        touchAction: "none"
+      }}>
+        <canvas 
+        onTouchStart={touchStart}
+        width="100vw" height="80vh" id="dibujito"></canvas>
+      </div>
       <Text m="0.5rem" ref={refGenerationFeedback}></Text>
       <Flex direction="row" m="0.3rem" w="100%">
         <Box m="0.5rem" flex="1">

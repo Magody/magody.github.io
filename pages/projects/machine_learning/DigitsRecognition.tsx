@@ -38,12 +38,10 @@ const prefix =
   (process.env.NEXT_PUBLIC_BASE_PATH || '') +
   '/images/projects/machine_learning/DigitsRecognition';
 
-const loadModelMnistDigits = async () => {
-  return await tf.loadLayersModel(prefix + '/model.json');
-  // console.log('loaded', modelDigits);
-};
+
 
 const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => {
+  // console.log("MODEL", modelDigits)
   let predictions: number[] = [];
   tf.tidy(() => {
     // Convert the canvas pixels to a Tensor of the matching shape
@@ -78,11 +76,29 @@ const DigitsRecognition: NextPage = () => {
   useEffect(() => {
     trainNewModel();
     setPrediction(modelPredict(2));
-    set_modelsDigits(loadModelMnistDigits());
+
+    const loadModelMnistDigits = async (): Promise<any> => {
+      return tf.loadLayersModel(prefix + '/model.json');
+      // console.log('loaded', modelDigits);
+    };
+
+    loadModelMnistDigits()
+      .then((md:any)=>{
+        console.log("LOADED", md)
+        set_modelsDigits(md);
+      })
+      .catch((error:any)=>{
+        console.log("ERROR LOADING MNIST", error)
+      })
+    
+  }, []);
+
+  useEffect(() => {
+    if(modelsDigits == null) return;
 
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
-  }, []);
+  }, [modelsDigits]);
 
   const valid = () => {
     return drawer != null && modelsDigits != null;
