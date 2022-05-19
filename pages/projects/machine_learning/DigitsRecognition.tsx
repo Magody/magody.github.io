@@ -217,6 +217,7 @@ const DigitsRecognition: NextPage = () => {
           border: '1px solid black',
           width: canvasWidth,
           height: canvasHeight,
+          touchAction: "none"
         }}
       >
         <canvas
