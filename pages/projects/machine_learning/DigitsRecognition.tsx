@@ -72,7 +72,7 @@ const DigitsRecognition: NextPage = () => {
   useEffect(() => {
     if (modelsDigits == null) return;
 
-      set_prediction_text('Ready to predict');
+      set_prediction_text('Ready to predict. ' + modelsDigits);
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, [modelsDigits]);
@@ -80,20 +80,16 @@ const DigitsRecognition: NextPage = () => {
   const modelDigitsPredict = (imageData: ImageData) => {
     let p: number[] = [];
     // console.log("MODEL", modelDigits)
-    tf.tidy(() => {
-      // Convert the canvas pixels to a Tensor of the matching shape
-      let img = tf.browser.fromPixels(imageData, 1);
-      set_prediction_text('Beginning transformation to 28x28');
-      img = img.reshape([1, 28, 28, 1]);
-      set_prediction_text('Transformed to 28x28');
-      img = tf.cast(img, 'float32');
-      set_prediction_text('Transformed to float32. Passing image to model...');
 
-      console.log('IMAGE', img);
-      // console.log(modelDigits.predict)
+    // Convert the canvas pixels to a Tensor of the matching shape
+    let img = tf.browser.fromPixels(imageData, 1);
+    set_prediction_text('Beginning transformation to 28x28');
+    img = img.reshape([1, 28, 28, 1]);
+    set_prediction_text('Transformed to 28x28');
+    img = tf.cast(img, 'float32');
+    set_prediction_text('Transformed to float32. Passing image to model...');
 
-      // Make and format the predications
-      const output = modelsDigits.predict(img) as any;
+    const output = modelsDigits.predict(img) as any;
       set_prediction_text('Predicted...');
 
 
@@ -102,8 +98,19 @@ const DigitsRecognition: NextPage = () => {
       p = Array.from(output.dataSync());
       p = p.map((x) => Math.round(x * 100));
       set_prediction_text('Mapping probabilities...');
+
+      /*
+
+    tf.tidy(() => {
+      
+      // console.log('IMAGE', img);
+      // console.log(modelDigits.predict)
+
+      // Make and format the predications
+      
       // console.log(p);
     });
+     */
 
     set_prediction_text('Process finished...');
     return p;
