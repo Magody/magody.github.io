@@ -74,7 +74,7 @@ const DigitsRecognition: NextPage = () => {
 
     // tf.setBackend('cpu');
     // console.log('Backend', );
-      set_prediction_text('Ready to predict. Using tf->' + tf.getBackend());
+      set_prediction_text('Ready to predict. Using tf->' + tf.getBackend() + ". FLOAT32 support " + tf.ENV.getBool('WEBGL_RENDER_FLOAT32_CAPABLE'));
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, [modelsDigits]);
@@ -88,8 +88,8 @@ const DigitsRecognition: NextPage = () => {
     set_prediction_text('Beginning transformation to 28x28');
     img = img.reshape([1, 28, 28, 1]);
     set_prediction_text('Transformed to 28x28');
-    img = tf.cast(img, 'float32');
-    set_prediction_text('Transformed to float32. Passing image to model...');
+    //img = tf.cast(img, 'float32');
+    //set_prediction_text('Transformed to float32. Passing image to model...');
 
     const output:any = modelsDigits.predict(img).dataSync();
     set_prediction_text('Predicted...');
