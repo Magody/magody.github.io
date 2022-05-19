@@ -40,34 +40,11 @@ const prefix =
 
 
 
-const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => {
-  // console.log("MODEL", modelDigits)
-  let predictions: number[] = [];
-  tf.tidy(() => {
-    // Convert the canvas pixels to a Tensor of the matching shape
-    let img = tf.browser.fromPixels(imageData, 1);
-    img = img.reshape([1, 28, 28, 1]);
-    img = tf.cast(img, 'float32');
-
-    console.log(img);
-    // console.log(modelDigits.predict)
-
-    // Make and format the predications
-    const output = modelDigits.predict(img) as any;
-
-    // console.log(output)
-    // Save predictions on the component
-    predictions = Array.from(output.dataSync());
-    console.log(predictions);
-    predictions = predictions.map((x) => Math.round(x * 100));
-  });
-
-  return predictions;
-};
 
 const DigitsRecognition: NextPage = () => {
   const [prediction, setPrediction] = useState(0);
   const [predictions, setPredictions] = useState<number[]>([]);
+  const [prediction_text, set_prediction_text] = useState<string>("Loading the model can take 5 to 30sec...");
 
   const [drawer, set_drawer] = useState<any>(null);
 
@@ -85,13 +62,16 @@ const DigitsRecognition: NextPage = () => {
     loadModelMnistDigits()
       .then((md:any)=>{
         console.log("LOADED", md)
+        set_prediction_text("")
         set_modelsDigits(md);
       })
       .catch((error:any)=>{
-        console.log("ERROR LOADING MNIST", error)
+        set_prediction_text("ERROR LOADING MNIST"  + error)
       })
     
   }, []);
+
+
 
   useEffect(() => {
     if(modelsDigits == null) return;
@@ -99,6 +79,34 @@ const DigitsRecognition: NextPage = () => {
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, [modelsDigits]);
+
+
+const modelDigitsPredict = (modelDigits:any, imageData: ImageData): number[] => {
+  // console.log("MODEL", modelDigits)
+  let predictions: number[] = [];
+  tf.tidy(() => {
+    // Convert the canvas pixels to a Tensor of the matching shape
+    set_prediction_text("Transforming the image to 28x28")
+    let img = tf.browser.fromPixels(imageData, 1);
+    img = img.reshape([1, 28, 28, 1]);
+    img = tf.cast(img, 'float32');
+
+    console.log(img);
+    // console.log(modelDigits.predict)
+
+    // Make and format the predications
+    const output = modelDigits.predict(img) as any;
+    set_prediction_text("Prediction completed")
+
+    // console.log(output)
+    // Save predictions on the component
+    predictions = Array.from(output.dataSync());
+    console.log(predictions);
+    predictions = predictions.map((x) => Math.round(x * 100));
+  });
+
+  return predictions;
+};
 
   const valid = () => {
     return drawer != null && modelsDigits != null;
@@ -108,6 +116,7 @@ const DigitsRecognition: NextPage = () => {
     drawer.pos.x = -1;
     drawer.pos.y = -1;
     const image = drawer.getImageData();
+    set_prediction_text("Sending image to predictor...")
     setPredictions(modelDigitsPredict(modelsDigits,image));
   };
 
@@ -146,7 +155,6 @@ const DigitsRecognition: NextPage = () => {
   let canvasWidth = '200px';
   let canvasHeight = '200px';
 
-  let componentPrediction = <div>{(!valid())? "LOADING MODEL...":""}</div>;
   if (predictions.length > 0) {
     let messages = [
       'ZERO',
@@ -180,15 +188,8 @@ const DigitsRecognition: NextPage = () => {
       extraInfo += `And ${messages[lastMaxIndex]} with less probability.`;
     }
 
-    componentPrediction = (
-      <div
-        style={{
-          textAlign: 'center',
-          color: "yellow",
-          fontSize: "2rem"
-        }}
-      >{`Your number is: ${messages[maxIndex]} with high probabilty. ${extraInfo}`}</div>
-    );
+    set_prediction_text(`Your number is: ${messages[maxIndex]} with high probabilty. ${extraInfo}`)
+
   }
 
 
@@ -261,7 +262,13 @@ const DigitsRecognition: NextPage = () => {
         Reset
       </Button>
 
-      {componentPrediction}
+      <div
+        style={{
+          textAlign: 'center',
+          color: "yellow",
+          fontSize: "2rem"
+        }}
+      >{prediction_text}</div>
       <br></br>
 
       <Text align={'center'} fontSize={'1rem'}>
