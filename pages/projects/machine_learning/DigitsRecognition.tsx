@@ -46,12 +46,12 @@ const DigitsRecognition: NextPage = () => {
   );
 
   const [drawer, set_drawer] = useState<any>(null);
-
+    const [loaded, set_loaded] = useState<boolean>(false);
   const [modelsDigits, set_modelsDigits] = useState<any>(null);
 
   useEffect(() => {
-    trainNewModel();
-    setPrediction(modelPredict(2));
+    // trainNewModel();
+    // setPrediction(modelPredict(2));
 
     const loadModelMnistDigits = async (): Promise<any> => {
       return tf.loadLayersModel(prefix + '/model.json');
@@ -61,7 +61,6 @@ const DigitsRecognition: NextPage = () => {
     loadModelMnistDigits()
       .then((md: any) => {
         console.log('LOADED', md);
-        set_prediction_text('Ready to predict');
         set_modelsDigits(md);
       })
       .catch((error: any) => {
@@ -73,6 +72,7 @@ const DigitsRecognition: NextPage = () => {
   useEffect(() => {
     if (modelsDigits == null) return;
 
+      set_prediction_text('Ready to predict');
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, [modelsDigits]);
@@ -118,6 +118,7 @@ const DigitsRecognition: NextPage = () => {
   };
 
   const touchUp = () => {
+    set_prediction_text('Touch up...');
     mouseUp();
   };
 
