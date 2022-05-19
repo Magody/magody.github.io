@@ -15,7 +15,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
-import { CanvasDrawerGameLife } from '../../../components/lib/CanvasDrawerGameLife';
+import { CanvasDrawerGameLife } from '../../../lib/CanvasDrawerGameLife';
 import classes from './GameOfLife.module.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';

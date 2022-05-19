@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
-import { ChatbotRetrieval } from '../../../components/lib/ChatbotRetrieval';
+import { ChatbotRetrieval } from '../../../lib/ChatbotRetrieval';
 import { SimpleSection } from '../../../components/projects/SimpleSection';
 import useMediaQueryFixed from '../../../hooks/use-media-query';
 

@@ -24,19 +24,13 @@ import CardProject from '../../components/ui/cards/CardProject';
 const prefix = (process.env.NEXT_PUBLIC_BASE_PATH || '') + '/images/projects';
 
 const projects = [
+
   new Project(
-    EnumProjectTypes.nlp,
-    '/projects/nlp/BrainChatbotRetrieval',
-    prefix + '/nlp/BrainChatbotRetrieval' + '/0.png',
-    'Chatbot Online with TF',
-    'Chatbot made with Neural Networks and SERVER LESS!',
-  ),
-  new Project(
-    EnumProjectTypes.machineLearning,
-    '/projects/machine_learning/AndroidGestureRecognition',
-    prefix + '/machine_learning/AndroidGestureRecognition' + '/0.png',
-    'Android Gesture Recognition',
-    'Neural Network using signals',
+    EnumProjectTypes.dataScience,
+    '/projects/data_science/AssociationRulesRestaurant',
+    prefix + '/data_science/AssociationRulesRestaurant' + '/0.png',
+    'Increasing sales with Association Rules',
+    'Data mining algorithm over restaurant transactions to deteminate association rules',
   ),
   new Project(
     EnumProjectTypes.dataScience,
@@ -44,6 +38,42 @@ const projects = [
     prefix + '/data_science/EDA_KenJee' + '/2.png',
     'Sentimental analysis, EDA and clustering',
     'Data science for youtuber Ken Jee in order to improve the CTR and subscription ratio',
+  ),
+  new Project(
+    EnumProjectTypes.computerVision,
+    '/projects/computer_vision/VirtualUI',
+    prefix + '/computer_vision/VirtualUI' + '/0.png',
+    'Virtual UI and painter with CV',
+    'Computer vision to detect hands, shapes, colors, gestures, etc.',
+  ),
+  new Project(
+    EnumProjectTypes.nlp,
+    '/projects/nlp/BrainChatbotRetrieval',
+    prefix + '/nlp/BrainChatbotRetrieval' + '/0.png',
+    'Chatbot Online with TF',
+    'Chatbot made with Neural Networks and SERVER LESS!',
+  ),
+
+  new Project(
+    EnumProjectTypes.computerVision,
+    '/projects/computer_vision/FaceRecognition',
+    prefix + '/computer_vision/FaceRecognition' + '/0.png',
+    'Face and contour recognition',
+    'Computer vision to detect face and other features.',
+  ),
+  new Project(
+    EnumProjectTypes.machineLearning,
+    '/projects/machine_learning/DigitsRecognition',
+    prefix + '/machine_learning/DigitsRecognition' + '/0.png',
+    'Digit recognizer ONLINE',
+    'MNIST Digit recognizer in the browser with Tensorflow JS',
+  ),
+  new Project(
+    EnumProjectTypes.machineLearning,
+    '/projects/machine_learning/AndroidGestureRecognition',
+    prefix + '/machine_learning/AndroidGestureRecognition' + '/0.png',
+    'Android Gesture Recognition',
+    'Neural Network using signals',
   ),
   new Project(
     EnumProjectTypes.webScrapping,
@@ -84,6 +114,7 @@ const projects = [
     'A.I. plays Tic Tac Toe',
     'A.I. plays Tic Tac Toe using recursivity to generate tree of diferent results, and choose the best branch to win the game',
   ),
+
   new Project(
     EnumProjectTypes.videogames,
     '/projects/videogames/PoliIsStrange',
@@ -130,6 +161,7 @@ const projects = [
     "A.I. solve the rubik's cube",
     "A.I. solve the rubik's cube, generating distinct posible paths and score them.",
   ),
+
   new Project(
     EnumProjectTypes.machineLearning,
     '/projects/machine_learning/RecommendationSystemMatrix',
