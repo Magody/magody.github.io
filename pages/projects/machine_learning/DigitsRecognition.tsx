@@ -61,6 +61,8 @@ const DigitsRecognition: NextPage = () => {
     loadModelMnistDigits()
       .then((md: any) => {
         console.log('LOADED', md);
+        tf.setBackend('cpu');
+        console.log('Backend', tf.getBackend());
         set_modelsDigits(md);
       })
       .catch((error: any) => {
@@ -89,13 +91,13 @@ const DigitsRecognition: NextPage = () => {
     img = tf.cast(img, 'float32');
     set_prediction_text('Transformed to float32. Passing image to model...');
 
-    const output = modelsDigits.predict(img) as any;
-      set_prediction_text('Predicted...');
+    const output:any = modelsDigits.predict(img).dataSync();
+    set_prediction_text('Predicted...');
 
 
       // console.log(output)
       // Save predictions on the component
-      p = Array.from(output.dataSync());
+      p = Array.from(output);
       p = p.map((x) => Math.round(x * 100));
       set_prediction_text('Mapping probabilities...');
 
