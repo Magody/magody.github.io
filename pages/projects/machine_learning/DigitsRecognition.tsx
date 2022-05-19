@@ -72,10 +72,13 @@ const DigitsRecognition: NextPage = () => {
   useEffect(() => {
     if (modelsDigits == null) return;
 
-    // tf.setBackend('cpu');
+     tf.setBackend('cpu');
     // console.log('Backend', );
-      set_prediction_text('Ready to predict. Using tf->' + tf.getBackend() + ". FLOAT32 support " + tf.ENV.getBool('WEBGL_RENDER_FLOAT32_CAPABLE'));
-    const canvas: any = document.getElementById('draw');
+      // set_prediction_text('Ready to predict. Using tf->' + tf.getBackend() + ". FLOAT32 support " + tf.ENV.getBool('WEBGL_RENDER_FLOAT32_CAPABLE') + " - enabled: " + tf.ENV.getBool('WEBGL_RENDER_FLOAT32_ENABLED'));
+    
+      set_prediction_text('Ready to predict. Using tf->' + tf.getBackend());
+    
+      const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, [modelsDigits]);
 
@@ -85,14 +88,15 @@ const DigitsRecognition: NextPage = () => {
 
     // Convert the canvas pixels to a Tensor of the matching shape
     let img = tf.browser.fromPixels(imageData, 1);
-    set_prediction_text('Beginning transformation to 28x28');
     img = img.reshape([1, 28, 28, 1]);
-    set_prediction_text('Transformed to 28x28');
-    //img = tf.cast(img, 'float32');
-    //set_prediction_text('Transformed to float32. Passing image to model...');
+    img = tf.cast(img, 'float32');
+    set_prediction_text(img.shape + '<-shape. Beginning transformation to 28x28');
+    
+    
 
-    const output:any = modelsDigits.predict(img).dataSync();
-    set_prediction_text('Predicted...');
+    p = tf.tidy(() => {
+      const output:any = modelsDigits.predict(img).dataSync();
+      set_prediction_text('Predicted...');
 
 
       // console.log(output)
@@ -100,19 +104,9 @@ const DigitsRecognition: NextPage = () => {
       p = Array.from(output);
       p = p.map((x) => Math.round(x * 100));
       set_prediction_text('Mapping probabilities...');
+      return p
 
-      /*
-
-    tf.tidy(() => {
-      
-      // console.log('IMAGE', img);
-      // console.log(modelDigits.predict)
-
-      // Make and format the predications
-      
-      // console.log(p);
     });
-     */
 
     set_prediction_text('Process finished...');
     return p;
@@ -163,7 +157,9 @@ const DigitsRecognition: NextPage = () => {
 
   const canvasClear = () => {
     if (!valid()) return;
+    
     drawer.clear();
+    set_prediction_text("RESET. Draw new number.")
   };
 
   let canvasWidth = '200px';
