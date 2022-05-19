@@ -61,8 +61,6 @@ const DigitsRecognition: NextPage = () => {
     loadModelMnistDigits()
       .then((md: any) => {
         console.log('LOADED', md);
-        tf.setBackend('cpu');
-        console.log('Backend', tf.getBackend());
         set_modelsDigits(md);
       })
       .catch((error: any) => {
@@ -74,7 +72,9 @@ const DigitsRecognition: NextPage = () => {
   useEffect(() => {
     if (modelsDigits == null) return;
 
-      set_prediction_text('Ready to predict. ' + modelsDigits);
+    // tf.setBackend('cpu');
+    // console.log('Backend', );
+      set_prediction_text('Ready to predict. Using tf->' + tf.getBackend());
     const canvas: any = document.getElementById('draw');
     set_drawer(new CanvasDrawerDigits(canvas, document));
   }, [modelsDigits]);
