@@ -473,7 +473,7 @@ const Index: React.FC<{}> = (props) => {
             </div>
             <div className="nine">
             <p data-node-name="outroText">Thanks for teaching me a lot about your culture. XD I hope we will be friends even in another universe.</p>
-            <p id="replay" data-node-name="replayText">Click here, if you want to watch it again. PROBABLY WILL HAPPEN SOMETHING DIFFERENT IN BACKGROUND (':'v if it is not bug already')</p>
+            <p id="replay" data-node-name="replayText">Click -{'>'}HERE{'<'}-, if you want to watch it again. PROBABLY WILL HAPPEN SOMETHING DIFFERENT IN BACKGROUND (':'v if it is not bug already')</p>
             <p className="last-smile" data-node-name="outroSmiley">{"(◕‿◕) - Danny"}</p>
             </div>
         </div>
