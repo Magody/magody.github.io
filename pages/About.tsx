@@ -85,12 +85,15 @@ const About: React.FC<{ audio: any }> = (props) => {
 
       $('#flex_vh').css('height', height);
     };
+
+    musicPlayers.current
+      ?.pause()
     musicPlayers.current
       ?.play()
       .then(() => {
         console.log('played');
         if (musicPlayers.current instanceof HTMLAudioElement) {
-          musicPlayers.current.volume = 0.25;
+          musicPlayers.current.volume = 0.1;
         } else {
           console.log('No instance', typeof musicPlayers.current);
         }

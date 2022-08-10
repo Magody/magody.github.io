@@ -39,6 +39,7 @@ const projects = [
     'Sentimental analysis, EDA and clustering',
     'Data science for youtuber Ken Jee in order to improve the CTR and subscription ratio',
   ),
+  /*
   new Project(
     EnumProjectTypes.computerVision,
     '/projects/computer_vision/VirtualUI',
@@ -46,6 +47,7 @@ const projects = [
     'Virtual UI and painter with CV',
     'Computer vision to detect hands, shapes, colors, gestures, etc.',
   ),
+  */
   new Project(
     EnumProjectTypes.nlp,
     '/projects/nlp/BrainChatbotRetrieval',
@@ -53,7 +55,7 @@ const projects = [
     'Chatbot Online with TF',
     'Chatbot made with Neural Networks and SERVER LESS!',
   ),
-
+  /*
   new Project(
     EnumProjectTypes.computerVision,
     '/projects/computer_vision/FaceRecognition',
@@ -61,6 +63,7 @@ const projects = [
     'Face and contour recognition',
     'Computer vision to detect face and other features.',
   ),
+  */
   new Project(
     EnumProjectTypes.machineLearning,
     '/projects/machine_learning/DigitsRecognition',
