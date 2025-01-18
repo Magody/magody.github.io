@@ -90,7 +90,7 @@ export default function HomePage() {
             {/* YouTube */}
             <button
               className="bg-red-500 px-4 py-2 text-white rounded-lg hover:bg-red-600 flex items-center gap-2"
-              onClick={() => window.open('https://www.youtube.com/@Hunt4AI', '_blank')}
+              onClick={() => window.open('https://www.youtube.com/@DannyAILab', '_blank')}
             >
               <FaYoutube className="text-lg" />
               YouTube
