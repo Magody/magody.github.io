@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import * as THREE from "three";
 import { ThreeWorld } from "@/models/ThreeWorld";
-import debounce from "lodash.debounce";
 
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const threeWorldGalaxy = new ThreeWorld();
@@ -68,6 +67,7 @@ const Galaxy = () => {
     animate();
 
     // Debounced resize handler
+    /*
     const resizeHandler = debounce(() => {
       const width = window.innerWidth * 0.9;
       const height = window.innerHeight / 2;
@@ -77,10 +77,11 @@ const Galaxy = () => {
     }, 100);
 
     window.addEventListener("resize", resizeHandler);
+    */
 
     // Cleanup
     return () => {
-      window.removeEventListener("resize", resizeHandler);
+      // window.removeEventListener("resize", resizeHandler);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       threeWorldGalaxy.cleanup();
 
