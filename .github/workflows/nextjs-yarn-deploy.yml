@@ -32,3 +32,4 @@ jobs:
         with:
           branch: gh-pages # Rama donde se publicará el proyecto
           folder: out # Carpeta generada por `next export`
+          token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
