@@ -7,6 +7,7 @@ import ProjectGrid from '@/components/ProjectGrid';
 import ProjectModal from '@/components/ProjectModal';
 import { FaYoutube, FaLinkedin, FaCalendarAlt } from 'react-icons/fa';
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export default function HomePage() {
   const [activeTag, setActiveTag] = useState<string>('all');
   const [modalProject, setModalProject] = useState(null);
@@ -43,7 +44,7 @@ export default function HomePage() {
         {/* Video de fondo */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/videos/brand-g.mp4"
+          src={`${basePath}/videos/brand-g.mp4"`}
           autoPlay
           loop
           muted
@@ -112,7 +113,8 @@ export default function HomePage() {
         {/* Imagen */}
         <div className="flex justify-center">
           <img
-            src="/images/profile.png"
+
+            src={`${basePath}/images/profile.png"`}
             alt="Mi foto de perfil"
             className="rounded-lg shadow-lg border-1 border-cyan-400 w-100 h-72 object-cover"
           />

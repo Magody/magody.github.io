@@ -7,6 +7,7 @@ interface ProjectModalProps {
   closeModal: () => void;
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export default function ProjectModal({ project, closeModal }: ProjectModalProps) {
   if (!project) return null; // Evita renderizar si no hay proyecto
 
@@ -85,7 +86,7 @@ export default function ProjectModal({ project, closeModal }: ProjectModalProps)
 
         {/* Imagen del proyecto */}
         <img
-          src={project.image}
+          src={`${basePath}${project.image}`}
           alt={project.title}
           className={styles.image}
         />

@@ -7,6 +7,7 @@ interface ProjectGridProps {
   openModal: (project: any) => void;
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export default function ProjectGrid({ projects, allProjects, openModal }: ProjectGridProps) {
   // Lista de colores predefinidos
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function ProjectGrid({ projects, allProjects, openModal }: Projec
           }
         >
           <img
-            src={project.image}
+            src={`${basePath}${project.image}`}
             alt={project.title}
             className="h-40 w-full object-cover rounded-md mb-4"
           />
