@@ -1,0 +1,134 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    color: #ffffff;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #33ff99;
+    text-align: center;
+  }
+  
+  .canvas {
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    touch-action: none;
+    max-width: 100%;
+  }
+  
+  .slider-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  .slider {
+    flex: 1;
+    min-width: 45%;
+  }
+  
+  .slider label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #33ff99;
+  }
+  
+  .slider input {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .btn:active {
+    transform: scale(0.95);
+  }
+  
+  .footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #cccccc;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .header {
+      font-size: 2rem;
+    }
+  
+    .slider-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .slider {
+      min-width: 100%;
+    }
+  
+    .btn {
+      padding: 0.7rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header {
+      font-size: 1.8rem;
+    }
+  
+    .canvas {
+      margin: 1rem 0;
+    }
+  
+    .slider-container {
+      gap: 1rem;
+    }
+  
+    .slider label {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+  

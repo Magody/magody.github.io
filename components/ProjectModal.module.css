@@ -1,0 +1,168 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+  }
+  
+  .modal {
+    background-color: #1f2937;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    color: #ffffff;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .title {
+    font-size: 24px;
+    color: #06b6d4;
+    font-weight: bold;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  .label {
+    color: #9ca3af;
+    font-weight: 500;
+    padding: 8px 0;
+    width: 30%;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .techTag {
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .tag {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  
+  .link {
+    color: #06b6d4;
+    text-decoration: underline;
+  }
+  
+  .image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+  
+  .section {
+    margin-bottom: 24px;
+  }
+  
+  .sectionTitle {
+    color: #06b6d4;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .text {
+    color: #d1d5db;
+    line-height: 1.5;
+  }
+  
+  .htmlContent {
+    color: #d1d5db;
+    line-height: 1.5;
+  }
+  
+  .htmlContent {
+    color: #d1d5db; /* Gris claro */
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  /* Títulos dentro del contenido HTML */
+  .htmlContent h1,
+  .htmlContent h2,
+  .htmlContent h3 {
+    color: #06b6d4; /* Cyan */
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+  
+  .htmlContent p {
+    margin-bottom: 16px;
+  }
+  
+  /* Listas no ordenadas */
+  .htmlContent ul {
+    margin-left: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .htmlContent li {
+    list-style-type: disc;
+    margin-bottom: 8px;
+  }
+  
+  /* Asegura que el iframe ocupe todo el ancho */
+/* Asegura que el iframe ocupe todo el ancho de su contenedor */
+.htmlContent iframe {
+    width: 100%;
+    height: auto; /* Ajusta automáticamente la altura si el contenido lo permite */
+    aspect-ratio: 16 / 9; /* Mantén proporción de video (opcional) */
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border: none; /* Quita cualquier borde extra */
+    display: block; /* Asegura que el iframe sea un elemento de bloque */
+  }
+  
+  .htmlContent div{
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border: none; /* Quita cualquier borde extra */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .htmlContent a {
+    color: #5fbdbd;
+    font-style: italic;
+    text-decoration: underline;
+  }
