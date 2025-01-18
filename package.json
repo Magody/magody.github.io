@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "validate": "npm run type-check",
-    "deploy": "gh-pages -d out -t true"
+    "validate": "npm run type-check"
   },
   "dependencies": {
     "@tensorflow/tfjs": "^4.22.0",
