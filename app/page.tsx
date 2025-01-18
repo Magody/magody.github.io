@@ -44,7 +44,7 @@ export default function HomePage() {
         {/* Video de fondo */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src={`${basePath}/videos/brand-g.mp4"`}
+          src={`${basePath}/videos/brand-g.mp4`}
           autoPlay
           loop
           muted
@@ -114,7 +114,7 @@ export default function HomePage() {
         <div className="flex justify-center">
           <img
 
-            src={`${basePath}/images/profile.png"`}
+            src={`${basePath}/images/profile.png`}
             alt="Mi foto de perfil"
             className="rounded-lg shadow-lg border-1 border-cyan-400 w-100 h-72 object-cover"
           />
