@@ -100,7 +100,7 @@ export default function HomePage() {
           <br></br>
           <div className="mt-4">
             <a
-              href="https://calendly.com/danny-sebastian-diaz"
+              href="https://calendly.com/effycentai/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-cyan-400 hover:text-cyan-100 transition-colors text-lg"
