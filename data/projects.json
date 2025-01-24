@@ -1,5 +1,18 @@
 [
-  
+  {
+    "id": 99,
+    "title": "LLM J.A.R.V.I.S",
+    "subtitle": "A n8n automation for a personalized AI assistant with a LLM",
+    "technologies": ["Python", "n8n", "OpenAI", "Supabase", "ElevenLabs"],
+    "tags": ["Artificial Intelligence", "Automation"],
+    "image": "/images/projects/artificial_intelligence/assistants/LLM JARVIS/overview.png",
+    "repo_link": "",
+    "goal": "Develop an interactive virtual assistant with a user-friendly interface and robust backend integrations, enabling voice commands, multimedia processing, and automated responses.",
+    "interactive": false,
+    "process_html": "<p>The JARVIS Virtual Assistant combines a PyQt5 frontend and an n8n backend to provide a flexible and interactive user experience. The system processes text, audio, and images while leveraging OpenAI's language models and other tools for dynamic responses. Key features include:</p><ul><li>Real-time voice input and audio responses</li><li>Customizable user configurations</li><li>Support for Google Calendar and Gmail integrations</li><li>Text-to-speech via ElevenLabs</li><li>Context-aware interactions using Supabase for knowledge retrieval (RAG with vector database)</li></ul><h3>Frontend Features</h3><p>The PyQt5-based interface is designed for usability and aesthetic appeal:</p><ul><li>A circular waveform visualization for audio interactions</li><li>Customizable settings for user name and assistant mode</li><li>Text display with Markdown formatting</li><li>Intuitive buttons for toggling audio recording and settings</li></ul><img src='/images/projects/artificial_intelligence/assistants/LLM JARVIS/interface.png' alt='JARVIS Interface'><h3>Backend Architecture</h3><p>The backend is built using n8n for automation and integration:</p><ul><li>A webhook initiates the flow by processing multimedia and text inputs</li><li>Content routing based on input type (text, image, or audio)</li><li>AI-driven responses using OpenAI's language models</li><li>Multimedia transcription and analysis</li><li>Integration with Google Calendar, Gmail, and Supabase</li></ul><img src='/images/projects/artificial_intelligence/assistants/LLM JARVIS/architecture.png' alt='Backend Architecture'><h3>Demo Video</h3><p>Experience the JARVIS assistant in action:</p><iframe src='https://player.vimeo.com/video/1049889096?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen style='width: 100%; height: 300px;'></iframe><h3>Key Objectives</h3><ul><li>Create a responsive and customizable assistant interface</li><li>Leverage AI to provide context-aware responses</li><li>Ensure seamless multimedia input handling</li><li>Automate routine tasks through integrations</li></ul><h3>Future Improvements</h3><p>Possible enhancements for the project include:</p><ul><li>Adding support for more languages</li><li>Improved NLP for better understanding of user intent</li><li>Integration with additional APIs for extended functionality</li></ul>",
+    "featured": true,
+    "path": ""
+  },
   {
     "id": 100,
     "title": "Agent Learns to Survive",
