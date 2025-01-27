@@ -40,7 +40,7 @@ export default function RootLayout({
   </a>
 </nav>
         </header>
-        <main className="p-8">
+        <main className="p-6">
           {children}
         </main>
         <footer className="w-full bg-black p-4 text-center text-sm text-cyan-400">

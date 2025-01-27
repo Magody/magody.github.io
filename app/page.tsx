@@ -38,31 +38,32 @@ export default function HomePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-0">
       {/* SECCIÓN INICIAL */}
-      <header className="relative text-center min-h-[25rem] text-white flex items-center justify-center">
-        {/* Video de fondo */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src={`${basePath}/videos/brand-g.mp4`}
-          autoPlay
-          loop
-          muted
-          playsInline
-        ></video>
+      <header className="relative text-center h-[50vh] md:h-[35rem] text-white flex items-center justify-center overflow-hidden">
+  {/* Video de fondo */}
+  <video
+    className="absolute inset-0 w-full h-auto min-h-full md:min-h-0 object-center object-contain"
+    src={`${basePath}/videos/brand-g.mp4`}
+    autoPlay
+    loop
+    muted
+    playsInline
+  ></video>
 
-        {/* Overlay oscuro para mejor legibilidad del texto */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80 z-10"></div>
+  {/* Overlay oscuro para mejor legibilidad del texto */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80"></div>
 
-        {/* Contenido centrado */}
-        <div className="relative z-20">
-          <h1 className="text-5xl font-bold mb-4">
-            If you can imagine it, <br />
-            <span className="text-cyan-400">You can program it</span>
-          </h1>
-          <p className="text-lg text-gray-300 mt-4">Hi, I am Danny 👋</p>
-        </div>
-      </header>
+  {/* Contenido centrado */}
+  <div className="relative z-10">
+    <h1 className="text-3xl md:text-5xl font-bold mb-4">
+      If you can imagine it, <br />
+      <span className="text-cyan-400">You can program it</span>
+    </h1>
+    <p className="text-base md:text-lg text-gray-300 mt-4">Hi, I am Danny 👋</p>
+  </div>
+</header>
+
 
 
       {/* ABOUT ME */}
