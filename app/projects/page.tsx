@@ -12,17 +12,17 @@ export default function ProjectsPage() {
   const [activeTag, setActiveTag] = useState<string>('all');
   const searchParams = useSearchParams();
 
-  // Extract unique tags from the JSON
+  // 1) Gather all tags across the entire dataset
   const allTags = Array.from(
     new Set(
       projectsData.flatMap((project) => project.tags || [])
     )
   );
 
-  // Build the tag color map
+  // 2) Build the color map from those tags
   const tagColorMap = getTagColorMap(allTags);
 
-  // Filter projects based on the active tag
+  // 3) Filter projects based on the active tag
   const filteredProjects =
     activeTag === 'all'
       ? projectsData
@@ -30,8 +30,8 @@ export default function ProjectsPage() {
           project.tags.includes(activeTag)
         );
 
+  // 4) The function called when a user clicks a project in the grid
   const openModal = (project: any) => {
-    // Merge the project with the tagColorMap
     setModalProject({ ...project, tagColorMap });
   };
 
