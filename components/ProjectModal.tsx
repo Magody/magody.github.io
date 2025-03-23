@@ -10,7 +10,6 @@ interface ProjectModalProps {
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export default function ProjectModal({ project, closeModal }: ProjectModalProps) {
   if (!project) return null; // Evita renderizar si no hay proyecto
-
   return (
     <div
       className={styles.overlay}
