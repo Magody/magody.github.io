@@ -54,7 +54,7 @@ function ProjectsContent({
 
       {/* Modal: conditionally render if a project is set */}
       {modalProject && (
-        <ProjectModal project={modalProject} closeModal={closeModal} tagColorMap={tagColorMap} />
+        <ProjectModal project={modalProject} closeModal={closeModal} />  // tagColorMap={tagColorMap} 
       )}
     </div>
   );
