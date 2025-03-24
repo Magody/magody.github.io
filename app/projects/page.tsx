@@ -11,9 +11,18 @@ import FilterBar from '@/components/FilterBar';
 // Example interface for a single project in your dataset
 interface Project {
   id: number;
-  name: string;
+  title: string;
+  subtitle: string;
+  technologies: string[];
   tags: string[];
-  // Add other fields as needed, e.g. description, link, etc.
+  image: string;
+  repo_link: string;
+  goal: string;
+  interactive: boolean;
+  process_html: string;
+  featured: boolean;
+  path: string;
+  tagColorMap?: Record<string, string>; // optional if injected dynamically
 }
 
 // Interface for the props in your presentational component
